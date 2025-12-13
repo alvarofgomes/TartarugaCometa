@@ -1,53 +1,107 @@
 package com.tartarugacometa.controller;
 
-import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.tartarugacometa.BO.ClienteBO;
 import com.tartarugacometa.exceptions.ValidacaoException;
 import com.tartarugacometa.model.Cliente;
 
-//http://localhost:8080/TartarugaCometa/cliente/cadastrar.jsp
+import java.util.Scanner;
 
-@WebServlet("/cliente")
-public class ClienteController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class ClienteController {
 
-	private ClienteBO clienteBo = new ClienteBO();
+    private Scanner sc = new Scanner(System.in);
+    private ClienteBO clienteBo = new ClienteBO();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher rd = request.getRequestDispatcher("/cliente/cadastrar.jsp");
-		rd.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		try {
-			String nome = request.getParameter("nome");
-			String cpfcnpj = request.getParameter("cpfcnpj");
-
-			Cliente cliente = new Cliente(nome, cpfcnpj);
-			clienteBo.cadastrarClienteBO(cliente);
-
-			request.setAttribute("cliente", cliente.getNome());
-
-			RequestDispatcher rd = request.getRequestDispatcher("/cliente/sucesso.jsp");
-			rd.forward(request, response);
-
-		} catch (ValidacaoException e) {
-			request.setAttribute("erro", e.getMessage());
-
-			RequestDispatcher rd = request.getRequestDispatcher("/cliente/erro.jsp");
-			rd.forward(request, response);
+    public void cadastrarClienteController() {
+    	
+    	try {
+			
+            System.out.println("Digite o nome: ");
+            String nome = sc.nextLine();
+            System.out.println("Digite CPF/CNPJ: ");
+            String cpfcnpj = sc.nextLine();
+            Cliente cliente = new Cliente(nome, cpfcnpj);
+            clienteBo.cadastrarClienteBO(cliente);
+            System.out.println("Cliente cadastrado!");
+    		
+		} catch (ValidacaoException  e) {
+			System.out.println("Erro de validação: " + e.getMessage());
+		}catch(Exception e) {
+			System.out.println("Erro inesperado: " + e.getMessage());
 		}
-	}
+        
+    }
+
+    public void atualizarClienteController() {
+    	
+    	try {
+    		
+            Cliente cliente = new Cliente();
+            System.out.println("ID: ");
+            cliente.setId(sc.nextInt());
+            sc.nextLine();
+            System.out.println("Novo nome: ");
+            cliente.setNome(sc.nextLine());
+            System.out.println("Novo CPF/CNPJ: ");
+            cliente.setCpfCnpj(sc.nextLine());
+            clienteBo.atualizarClienteBO(cliente);
+            System.out.println("Cliente atualizado!");
+            
+		} catch (ValidacaoException  e) {
+			System.out.println("Erro de validação: " + e.getMessage());
+		}catch(Exception e) {
+			System.out.println("Erro inesperado: " + e.getMessage());
+		}
+        
+    }
+  
+    public void excluirClienteController() {
+    	
+        try {
+            System.out.println("Informe o ID:");
+            int id = sc.nextInt();
+            sc.nextLine(); 
+            clienteBo.deletarClienteBO(id);
+            System.out.println("Cliente excluído!");
+        } catch (Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+        }
+        
+    }
+    
+    public void listarClientesController() {
+    	
+        try {
+        	
+	       System.out.println("Listando clientes cadastrados: ");
+	       clienteBo.listarClientesBO().forEach(cliente -> {
+	           System.out.println(cliente.getNome());
+	       });
+
+        } catch(Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+        }
+        
+    }
+
+    public void buscarClientePorIdController() {
+        try {
+            System.out.println("Informe o ID do cliente:");
+            int id = sc.nextInt();
+            sc.nextLine();
+
+            Cliente cliente = clienteBo.buscarClientePorIdBO(id);
+
+            if (cliente != null) {
+                System.out.println("Cliente encontrado:");
+                System.out.println("ID: " + cliente.getId());
+                System.out.println("Nome: " + cliente.getNome());
+                System.out.println("CPF/CNPJ: " + cliente.getCpfCnpj());
+            } else {
+                System.out.println("Nenhum cliente encontrado com esse ID.");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+        }
+    }
+    
 }

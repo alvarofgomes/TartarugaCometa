@@ -1,0 +1,9 @@
+package com.tartarugacometa.controller;
+
+@WebServlet("/ping")
+public class PingServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
+        resp.getWriter().println("PING OK");
+    }
+}

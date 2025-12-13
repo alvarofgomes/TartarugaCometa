@@ -1,0 +1,51 @@
+package com.tartarugacometa.controller;
+
+import com.tartarugacometa.BO.ClienteBO;
+import com.tartarugacometa.exceptions.ValidacaoException;
+import com.tartarugacometa.model.Cliente;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/cliente")
+public class ClienteController extends HttpServlet {
+
+    private ClienteBO clienteBO = new ClienteBO();
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String acao = req.getParameter("acao");
+
+        if ("cadastrar".equals(acao)) {
+            cadastrar(req, resp);
+        }
+    }
+
+    private void cadastrar(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        try {
+            String nome = req.getParameter("nome");
+            String cpfcnpj = req.getParameter("cpfcnpj");
+
+            Cliente cliente = new Cliente(nome, cpfcnpj);
+            clienteBO.cadastrarClienteBO(cliente);
+
+            req.setAttribute("mensagem", "Cliente cadastrado com sucesso!");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("cliente/sucesso.jsp");
+            dispatcher.forward(req, resp);
+
+        } catch (ValidacaoException e) {
+            req.setAttribute("erro", e.getMessage());
+            RequestDispatcher dispatcher = req.getRequestDispatcher("cliente/erro.jsp");
+            dispatcher.forward(req, resp);
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tartaruga Cometa</title>
+</head>
+<body>
+
+<h1>Projeto Tartaruga Cometa</h1>
+
+<a href="cliente/cadastrar.jsp">Cadastrar Cliente</a>
+
+</body>
+</html>

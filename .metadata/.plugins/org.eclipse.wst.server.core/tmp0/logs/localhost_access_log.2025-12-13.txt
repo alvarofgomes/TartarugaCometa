@@ -1,0 +1,16 @@
+127.0.0.1 - - [13/Dec/2025:12:58:49 -0200] "GET / HTTP/1.1" 404 764
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:12:58:50 -0200] "GET /TartarugaCometa/cliente/cadastrar.jsp HTTP/1.1" 200 387
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:12:58:50 -0200] "GET /favicon.ico HTTP/1.1" 404 775
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:12:59:00 -0200] "POST /TartarugaCometa/cliente HTTP/1.1" 200 227
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:12:59:10 -0200] "GET /TartarugaCometa/cliente HTTP/1.1" 200 387
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:13:00:23 -0200] "POST /TartarugaCometa/cliente HTTP/1.1" 200 227
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:13:00:46 -0200] "GET /TartarugaCometa/cliente HTTP/1.1" 200 387
+127.0.0.1 - - [13/Dec/2025:17:01:29 -0200] "GET / HTTP/1.1" 404 764
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:17:02:19 -0200] "GET /TartarugaCometa/cliente/cadastrar.jsp HTTP/1.1" 200 387
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:17:02:36 -0200] "POST /TartarugaCometa/cliente HTTP/1.1" 200 227
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:17:02:54 -0200] "GET /TartarugaCometa/cliente HTTP/1.1" 200 387
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:17:02:55 -0200] "POST /TartarugaCometa/cliente HTTP/1.1" 200 260
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:17:02:56 -0200] "GET /TartarugaCometa/cliente HTTP/1.1" 200 387
+127.0.0.1 - - [13/Dec/2025:17:23:21 -0200] "GET / HTTP/1.1" 404 764
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:17:23:41 -0200] "GET /TartarugaCometa/cliente/cadastrar.jsp HTTP/1.1" 200 387
+0:0:0:0:0:0:0:1 - - [13/Dec/2025:17:24:07 -0200] "POST /TartarugaCometa/cliente HTTP/1.1" 200 222

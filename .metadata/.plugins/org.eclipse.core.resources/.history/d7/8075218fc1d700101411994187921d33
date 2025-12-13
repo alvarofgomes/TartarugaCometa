@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Erro</title>
+</head>
+<body>
+
+<h2>Erro ao cadastrar cliente:</h2>
+<p style="color:red;"><%= request.getAttribute("erro") %></p>
+
+<a href="cadastrar.jsp">Voltar</a>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+E:\Projetos_Pessoais\TartarugaCometa\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2274803298.index
+1003840544.index
+3207919533.index
+2203259324.index
+3386762156.index
+1814633300.index
+557247472.index
