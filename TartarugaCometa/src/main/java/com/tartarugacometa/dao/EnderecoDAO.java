@@ -21,7 +21,7 @@ public class EnderecoDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, endereco.getRua());
-            ps.setInt(2, endereco.getNumero());
+            ps.setString(2, endereco.getNumero());
             ps.setString(3, endereco.getBairro());
             ps.setString(4, endereco.getCidade());
             ps.setString(5, endereco.getEstado());
@@ -42,7 +42,7 @@ public class EnderecoDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, endereco.getRua());
-            ps.setInt(2, endereco.getNumero());
+            ps.setString(2, endereco.getNumero());
             ps.setString(3, endereco.getBairro());
             ps.setString(4, endereco.getCidade());
             ps.setString(5, endereco.getEstado());
@@ -84,7 +84,7 @@ public class EnderecoDAO {
             while (rs.next()) {
                 Endereco endereco = new Endereco(
                     rs.getString("rua"),
-                    rs.getInt("numero"),
+                    rs.getString("numero"),
                     rs.getString("bairro"),
                     rs.getString("cidade"),
                     rs.getString("estado"),

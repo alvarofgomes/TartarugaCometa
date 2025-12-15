@@ -10,7 +10,7 @@
 	<p>${erro}</p>
 
 	<br>
-	<a href="/TartarugaCometa/cliente">Voltar</a>
+	<a href="/TartarugaCometa/clienteCadastrar">Voltar</a>
 
 </body>
 </html>

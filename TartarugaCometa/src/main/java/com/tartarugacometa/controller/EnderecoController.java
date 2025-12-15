@@ -31,7 +31,7 @@ public class EnderecoController {
             System.out.println("Rua: ");
             endereco.setRua(sc.nextLine());
             System.out.println("N�mero: ");
-            endereco.setNumero(sc.nextInt());
+            endereco.setNumero(sc.nextLine());
             sc.nextLine();
             System.out.println("Bairro: ");
             endereco.setBairro(sc.nextLine());
@@ -66,7 +66,7 @@ public class EnderecoController {
             System.out.println("Nova Rua: ");
             endereco.setRua(sc.nextLine());
             System.out.println("Novo N�mero: ");
-            endereco.setNumero(sc.nextInt());
+            endereco.setNumero(sc.nextLine());
             sc.nextLine();
             System.out.println("Novo Bairro: ");
             endereco.setBairro(sc.nextLine());

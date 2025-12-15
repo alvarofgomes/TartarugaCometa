@@ -13,7 +13,7 @@ import com.tartarugacometa.BO.ClienteBO;
 import com.tartarugacometa.exceptions.ValidacaoException;
 import com.tartarugacometa.model.Cliente;
 
-//http://localhost:8080/TartarugaCometa/cliente/cadastrar.jsp
+//http://localhost:8080/TartarugaCometa/clienteCadastrar
 @WebServlet("/clienteCadastrar")
 public class CadastrarClienteServlet extends HttpServlet{
 

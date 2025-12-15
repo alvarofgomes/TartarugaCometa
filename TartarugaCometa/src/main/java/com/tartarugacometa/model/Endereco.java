@@ -3,14 +3,14 @@ public class Endereco {
 
 	private int id;
 	private String rua;
-	private int numero;
+	private String numero;
 	private String bairro;
 	private String cidade;
 	private String estado;
 	private String cep;
 	private Cliente cliente;
 	
-	public Endereco(String rua, int numero, String bairro, String cidade, String estado, String cep) {
+	public Endereco(String rua, String numero, String bairro, String cidade, String estado, String cep) {
 		this.rua = rua;
 		this.numero = numero;
 		this.bairro = bairro;
@@ -30,11 +30,11 @@ public class Endereco {
 		this.rua = rua;
 	}
 	
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 	
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 	
