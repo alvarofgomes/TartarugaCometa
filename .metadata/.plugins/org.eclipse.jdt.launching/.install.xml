@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
     <entry loc="C:\Program Files\Java\jdk-17" stamp="1742481739192"/>
+    <entry loc="/opt/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_21.0.8.v20250724-1412/jre" stamp="1757089228000"/>
+    <entry loc="/opt/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_21.0.8.v20250724-1412" stamp="1757089228000"/>
     <entry loc="C:\Program Files\Java\jre1.8.0_202" stamp="1765494359126"/>
     <entry loc="C:\Program Files\Java\jdk1.8.0_202" stamp="1765494359778"/>
     <entry loc="C:\Program Files\Java\jdk-21" stamp="1750704872149"/>
+    <entry loc="/usr/lib/jvm/java-21-openjdk-amd64" stamp="1738354058208"/>
+    <entry loc="/usr/lib/jvm/java-8-openjdk-amd64" stamp="1764601673254"/>
 </dirs>

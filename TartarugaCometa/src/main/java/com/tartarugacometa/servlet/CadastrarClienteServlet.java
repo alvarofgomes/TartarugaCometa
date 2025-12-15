@@ -14,7 +14,7 @@ import com.tartarugacometa.exceptions.ValidacaoException;
 import com.tartarugacometa.model.Cliente;
 
 //http://localhost:8080/TartarugaCometa/cliente/cadastrar.jsp
-@WebServlet("/cliente")
+@WebServlet("/clienteCadastrar")
 public class CadastrarClienteServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

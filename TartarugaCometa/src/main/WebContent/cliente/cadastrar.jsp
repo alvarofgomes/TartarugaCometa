@@ -8,7 +8,7 @@
 
 	<h2>Cadastro de Cliente</h2>
 
-	<form action="/TartarugaCometa/cliente" method="post">
+	<form action="/TartarugaCometa/clienteCadastrar" method="post">
 	
 		Nome: <input type="text" name="nome" /><br><br>
 		CPF/CNPJ: <input type="text" name="cpfcnpj" /><br><br>
