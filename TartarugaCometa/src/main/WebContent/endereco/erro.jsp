@@ -12,7 +12,7 @@
 	<p>${erro}</p>
 	
 	<br>
-	<a href="/TartarugaCometa/enderecoCadastrar">Voltar</a>
+	<a href="/TartarugaCometa/cadastrarEndereco">Voltar</a>
 	
 </body>
 </html>

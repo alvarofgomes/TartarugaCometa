@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tartarugacometa.BO.ClienteBO;
-import com.tartarugacometa.model.Cliente;
+import com.tartarugacometa.BO.EnderecoBO;
+import com.tartarugacometa.model.Endereco;
 
-@WebServlet("/mostraCliente")
-public class MostraClienteServlet extends HttpServlet {
+@WebServlet("/mostraEndereco")
+public class MostraEnderecoServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private ClienteBO clienteBo = new ClienteBO();
+    private EnderecoBO enderecoBo = new EnderecoBO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,13 +25,16 @@ public class MostraClienteServlet extends HttpServlet {
 
         if (paramId != null && !paramId.isEmpty()) {
             Integer id = Integer.valueOf(paramId);
-            Cliente cliente = clienteBo.buscarClientePorIdBO(id);
-            request.setAttribute("cliente", cliente);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/cliente/formAlteraCliente.jsp");
+            Endereco endereco = enderecoBo.buscarEnderecoPorIdBO(id);
+
+            request.setAttribute("endereco", endereco);
+
+            RequestDispatcher rd =
+                    request.getRequestDispatcher("/endereco/formAlteraEndereco.jsp");
             rd.forward(request, response);
         } else {
-            response.sendRedirect("Erro: ID não fornecido.");
+            response.sendRedirect("Erro: ID do endereço não informado.");
         }
     }
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.conexaofactory.ConnectionFactory;
+import com.tartarugacometa.model.Cliente;
 import com.tartarugacometa.model.Endereco;
 
 public class EnderecoDAO {
@@ -74,7 +75,12 @@ public class EnderecoDAO {
     public List<Endereco> listarEnderecosDAO() {
         List<Endereco> enderecos = new ArrayList<>();
 
-        String sql = "SELECT * FROM enderecos;";
+        String sql = "SELECT enderecos.id_endereco, enderecos.rua, enderecos.numero, " +
+        	    "enderecos.bairro, enderecos.cidade, enderecos.estado, enderecos.cep, " +
+        	    "clientes.id_cliente, clientes.nome " + 
+        	    "FROM enderecos " +                        
+        	    "JOIN clientes ON enderecos.clientes_id = clientes.id_cliente;";
+       
 
         try (Connection conn = connection.recuperarConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -82,6 +88,11 @@ public class EnderecoDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+            	
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("id_cliente"));
+                cliente.setNome(rs.getString("nome"));
+            	
                 Endereco endereco = new Endereco(
                     rs.getString("rua"),
                     rs.getString("numero"),
@@ -91,16 +102,54 @@ public class EnderecoDAO {
                     rs.getString("cep")
                 );
                 endereco.setId(rs.getInt("id_endereco"));
+                endereco.setCliente(cliente);
+                
                 enderecos.add(endereco);
                 
             }
 
             return enderecos;
 
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
+    public Endereco buscarEnderecoPorIdDAO(int id) {
 
+        String sql = "SELECT * FROM enderecos WHERE id_endereco = ?;";
+
+        try (Connection conn = connection.recuperarConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                Endereco endereco = new Endereco();
+                endereco.setId(rs.getInt("id_endereco"));
+                endereco.setRua(rs.getString("rua"));
+                endereco.setNumero(rs.getString("numero"));
+                endereco.setBairro(rs.getString("bairro"));
+                endereco.setCidade(rs.getString("cidade"));
+                endereco.setEstado(rs.getString("estado"));
+                endereco.setCep(rs.getString("cep"));
+
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("clientes_id"));
+                endereco.setCliente(cliente);
+
+                return endereco;
+
+            } else {
+                throw new RuntimeException("Endereço com ID " + id + " não encontrado.");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    
 }

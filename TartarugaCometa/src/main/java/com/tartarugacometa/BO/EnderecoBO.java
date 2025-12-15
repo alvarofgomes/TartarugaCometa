@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tartarugacometa.dao.EnderecoDAO;
 import com.tartarugacometa.exceptions.ValidacaoException;
+import com.tartarugacometa.model.Cliente;
 import com.tartarugacometa.model.Endereco;
 
 public class EnderecoBO {
@@ -26,6 +27,10 @@ public class EnderecoBO {
 
     public List<Endereco> listarEnderecoBO() {
         return enderecoDAO.listarEnderecosDAO();
+    }
+    
+    public Endereco buscarEnderecoPorIdBO(int id) {
+        return enderecoDAO.buscarEnderecoPorIdDAO(id);
     }
     
     public void validarEndereco(Endereco endereco) {
