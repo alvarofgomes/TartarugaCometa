@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.conexaofactory.ConnectionFactory;
+import com.tartarugacometa.model.Cliente;
 import com.tartarugacometa.model.Entrega;
 
 public class EntregaDAO {
@@ -85,6 +86,79 @@ public class EntregaDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public List<Entrega> listarEntregasDAO() {
+        List<Entrega> entregas = new ArrayList<>();
+
+        String sql =
+            "SELECT entregas.id_entrega, entregas.status, entregas.frete, " +
+            "clientes.id_cliente, clientes.nome " +
+            "FROM entregas " +
+            "JOIN clientes ON entregas.clientes_id = clientes.id_cliente;";
+
+        try (Connection conn = connection.recuperarConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("id_cliente"));
+                cliente.setNome(rs.getString("nome"));
+
+                Entrega entrega = new Entrega();
+                entrega.setId(rs.getInt("id_entrega"));
+                entrega.setStatus(rs.getString("status"));
+                entrega.setFrete(rs.getDouble("frete"));
+                entrega.setCliente(cliente);
+
+                entregas.add(entrega);
+            }
+
+            return entregas;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public Entrega buscarEntregaPorIdDAO(int id) {
+
+        String sql =
+            "SELECT entregas.id_entrega, entregas.status, entregas.frete, " +
+            "clientes.id_cliente, clientes.nome " +
+            "FROM entregas " +
+            "JOIN clientes ON entregas.clientes_id = clientes.id_cliente " +
+            "WHERE entregas.id_entrega = ?";
+
+        try (Connection connection = this.connection.recuperarConexao();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                Cliente cliente = new Cliente();
+                cliente.setId(resultSet.getInt("id_cliente"));
+                cliente.setNome(resultSet.getString("nome"));
+
+                Entrega entrega = new Entrega();
+                entrega.setId(resultSet.getInt("id_entrega"));
+                entrega.setStatus(resultSet.getString("status"));
+                entrega.setFrete(resultSet.getDouble("frete"));
+                entrega.setCliente(cliente);
+
+                return entrega;
+            }
+
+            throw new RuntimeException("Entrega não encontrada");
+
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
         }
     }
 
