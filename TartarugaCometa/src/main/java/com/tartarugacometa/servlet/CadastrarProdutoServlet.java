@@ -51,7 +51,6 @@ public class CadastrarProdutoServlet extends HttpServlet {
 			
 		} catch (ValidacaoException e) {
 			request.setAttribute("erro", e.getMessage());
-
 			RequestDispatcher rd = request.getRequestDispatcher("/produto/erro.jsp");
 			rd.forward(request, response);
 		}

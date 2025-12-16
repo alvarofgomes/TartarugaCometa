@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tartarugacometa.BO.ProdutoBO;
-import com.tartarugacometa.model.Entrega;
 import com.tartarugacometa.model.Produto;
 
 @WebServlet("/produtoListar")

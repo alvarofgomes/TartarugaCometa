@@ -23,7 +23,19 @@ public class AlteraEnderecoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            Integer id = Integer.valueOf(request.getParameter("id"));
+
+        	 String idEndereco = request.getParameter("id");
+
+             if (idEndereco == null || idEndereco.trim().isEmpty()) {
+                 throw new ValidacaoException("ID do endereço não informado.");
+             }
+
+             int id;
+             try {
+                 id = Integer.parseInt(idEndereco);
+             } catch (ValidacaoException e) {
+                 throw new ValidacaoException("ID do endereço inválido.");
+             }
 
             Endereco endereco = new Endereco();
             endereco.setId(id);
@@ -40,15 +52,10 @@ public class AlteraEnderecoServlet extends HttpServlet {
 
         } catch (ValidacaoException e) {
             request.setAttribute("erro", e.getMessage());
-            RequestDispatcher rd =
-                    request.getRequestDispatcher("/endereco/formAlteraEndereco.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/endereco/formAlteraEndereco.jsp");
             rd.forward(request, response);
 
-        } catch (Exception e) {
-            request.setAttribute("erro", "Erro inesperado: " + e.getMessage());
-            RequestDispatcher rd =
-                    request.getRequestDispatcher("/endereco/formAlteraEndereco.jsp");
-            rd.forward(request, response);
         }
+
     }
 }

@@ -12,24 +12,22 @@ import com.tartarugacometa.BO.EntregaBO;
 @WebServlet("/removeEntrega")
 public class RemoveEntregaServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-	
+    private static final long serialVersionUID = 1L;
     private EntregaBO entregaBo = new EntregaBO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String idEntrega = request.getParameter("id");
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
 
-        if (idEntrega == null || idEntrega.isEmpty()) {
-            throw new RuntimeException("ID da entrega não informado");
+            entregaBo.deletarEntregaBO(id);
+
+            response.sendRedirect(request.getContextPath() + "/entregaListar");
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao remover entrega", e);
         }
-
-        int id = Integer.parseInt(idEntrega);
-
-        entregaBo.deletarEntregaBO(id);
-
-        response.sendRedirect(request.getContextPath() + "/entregaListar");
     }
 }

@@ -44,7 +44,6 @@ public class CadastrarClienteServlet extends HttpServlet{
 
 		} catch (ValidacaoException e) {
 			request.setAttribute("erro", e.getMessage());
-
 			RequestDispatcher rd = request.getRequestDispatcher("/cliente/erro.jsp");
 			rd.forward(request, response);
 		}

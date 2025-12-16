@@ -11,15 +11,18 @@
 	<h2>Editar Produto</h2>
 
 	<form action="alteraProduto" method="post">
-	    <input type="hidden" name="id" value="${produto.id}">
-	
-	    Nome Do Produto: <input type="text" name="produto" value="${produto.nomeDoProduto}"><br>
-	    Peso: <input type="number" name="peso" value="${produto.peso}"><br>
-	    Volume: <input type="number" name="volume" value="${produto.volume}"><br>
-	    Valor: <input type="number" name="valor" value="${produto.valor}"><br>
+
+		
+    	<input type="hidden" name="id" value="${produto.id}">
+
+	    Nome do Produto:<input type="text" name="nome" value="${produto.nomeDoProduto}"><br>
+		Peso:<input type="text" name="peso" value="${produto.peso}"><br>
+		Volume:<input type="text" name="volume" value="${produto.volume}"><br>
+		Valor:<input type="text" name="valorfrete" value="${produto.valor}"><br>
 	
 	    <input type="submit" value="Salvar">
 	</form>
+
 
 </body>
 </html>

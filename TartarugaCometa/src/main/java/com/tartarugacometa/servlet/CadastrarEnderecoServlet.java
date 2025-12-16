@@ -4,13 +4,11 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tartarugacometa.BO.ClienteBO;
 import com.tartarugacometa.BO.EnderecoBO;
 import com.tartarugacometa.exceptions.ValidacaoException;
 import com.tartarugacometa.model.Cliente;
@@ -57,7 +55,6 @@ public class CadastrarEnderecoServlet extends HttpServlet {
 
 		} catch (ValidacaoException e) {
 			request.setAttribute("erro", e.getMessage());
-
 			RequestDispatcher rd = request.getRequestDispatcher("/endereco/erro.jsp");
 			rd.forward(request, response);
 		}

@@ -34,13 +34,43 @@ public class EnderecoBO {
     }
     
     public void validarEndereco(Endereco endereco) {
+
+        if (endereco == null) {
+            throw new ValidacaoException("Endereço inválido.");
+        }
+
         if (endereco.getRua() == null || endereco.getRua().trim().isEmpty()) {
             throw new ValidacaoException("A rua não pode estar vazia.");
+        }
+
+        if (endereco.getNumero() == null || endereco.getNumero().trim().isEmpty()) {
+            throw new ValidacaoException("O número não pode estar vazio.");
+        }
+
+        if (endereco.getBairro() == null || endereco.getBairro().trim().isEmpty()) {
+            throw new ValidacaoException("O bairro não pode estar vazio.");
         }
 
         if (endereco.getCidade() == null || endereco.getCidade().trim().isEmpty()) {
             throw new ValidacaoException("A cidade não pode estar vazia.");
         }
+
+        if (endereco.getEstado() == null || endereco.getEstado().trim().isEmpty()) {
+            throw new ValidacaoException("O estado não pode estar vazio.");
+        }
+
+        if (endereco.getCep() == null || endereco.getCep().trim().isEmpty()) {
+            throw new ValidacaoException("O CEP não pode estar vazio.");
+        }
+
+        if (!endereco.getCep().matches("\\d{8}")) {
+            throw new ValidacaoException("O CEP deve conter exatamente 8 números.");
+        }
+
+        if (endereco.getCliente() == null || endereco.getCliente().getId() <= 0) {
+            throw new ValidacaoException("O endereço deve estar associado a um cliente válido.");
+        }
     }
+
     
 }

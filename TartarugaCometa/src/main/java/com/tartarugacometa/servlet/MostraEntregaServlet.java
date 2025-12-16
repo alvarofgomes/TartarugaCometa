@@ -22,11 +22,11 @@ public class MostraEntregaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String paramId = request.getParameter("id");
+        String idEntrega = request.getParameter("id");
 
-        if (paramId != null && !paramId.isEmpty()) {
+        if (idEntrega != null && !idEntrega.isEmpty()) {
 
-            Integer id = Integer.valueOf(paramId);
+            Integer id = Integer.valueOf(idEntrega);
             Entrega entrega = entregaBo.buscarEntregaPorIdBO(id);
 
             request.setAttribute("entrega", entrega);

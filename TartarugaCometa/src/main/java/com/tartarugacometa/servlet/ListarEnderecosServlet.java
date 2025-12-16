@@ -27,7 +27,6 @@ public class ListarEnderecosServlet extends HttpServlet {
         List<Endereco> enderecos = enderecoBo.listarEnderecoBO();
 
         request.setAttribute("enderecos", enderecos);
-
         RequestDispatcher rd = request.getRequestDispatcher("/endereco/listar.jsp");
         rd.forward(request, response);
     }

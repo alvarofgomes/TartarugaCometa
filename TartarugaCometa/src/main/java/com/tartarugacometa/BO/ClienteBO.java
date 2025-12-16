@@ -44,5 +44,10 @@ public class ClienteBO {
         if (!cliente.getCpfCnpj().matches("\\d+")) {
             throw new ValidacaoException("CPF/CNPJ deve conter apenas números.");
         }
+        
+        if (cliente.getCpfCnpj().length() != 11 && cliente.getCpfCnpj().length() != 14) {
+            throw new ValidacaoException("CPF deve ter 11 dígitos ou CNPJ deve ter 14 dígitos.");
+        }
     }
+        
 }

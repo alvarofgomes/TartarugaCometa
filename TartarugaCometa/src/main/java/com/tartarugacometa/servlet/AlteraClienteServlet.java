@@ -22,7 +22,19 @@ public class AlteraClienteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            Integer id = Integer.valueOf(request.getParameter("id"));
+        	
+        	String idCliente = request.getParameter("id");
+
+            if (idCliente == null || idCliente.trim().isEmpty()) {
+                throw new ValidacaoException("ID do cliente não informado.");
+            }
+
+            int id;
+            try {
+                id = Integer.parseInt(idCliente);
+            } catch (Exception e) {
+                throw new ValidacaoException("ID do cliente inválido.");
+            }
           
             String nome = request.getParameter("nome").trim();
             String cpfCnpj = request.getParameter("cpfCnpj").trim().replaceAll("\\s+", ""); 
@@ -39,10 +51,7 @@ public class AlteraClienteServlet extends HttpServlet {
             request.setAttribute("erro", e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/cliente/formAlteraCliente.jsp");
             rd.forward(request, response);
-        } catch (Exception e) {
-            request.setAttribute("erro", "Erro inesperado: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/cliente/formAlteraCliente.jsp");
-            rd.forward(request, response);
         }
+        
     }
 }

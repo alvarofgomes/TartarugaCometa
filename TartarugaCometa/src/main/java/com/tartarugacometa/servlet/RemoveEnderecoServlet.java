@@ -14,21 +14,18 @@ import com.tartarugacometa.BO.EnderecoBO;
 public class RemoveEnderecoServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
     private EnderecoBO enderecoBo = new EnderecoBO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String paramId = request.getParameter("id");
-
         try {
-            Integer id = Integer.valueOf(paramId);
+            int id = Integer.parseInt(request.getParameter("id"));
 
             enderecoBo.deletarEnderecoBO(id);
 
-            response.sendRedirect("/TartarugaCometa/enderecoListar");
+            response.sendRedirect(request.getContextPath() + "/enderecoListar");
 
         } catch (Exception e) {
             throw new ServletException("Erro ao remover endereço", e);

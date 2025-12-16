@@ -45,11 +45,26 @@ public class ItensEntregasDAO {
 	            throw new RuntimeException(e);
 	        }
 	    }
+	    //evitar erro quando apaga com o metodo acima 
+	    public void deletarItensPorProdutoDAO(int produtoId) {
+	        String sql = "DELETE FROM itens_entregas WHERE produto_id = ?;";
+
+	        try (Connection conn = connection.recuperarConexao();
+	             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	            ps.setInt(1, produtoId);
+	            ps.execute();
+
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+	    }
 	   
-	    public List<ItensEntregas> listarPorEntregaDAO(int entregaId /*int produtoId*/) {
+	    public List<ItensEntregas> listarPorEntregaDAO(int entregaId) {
+	    	
 	        List<ItensEntregas> itensEntregas = new ArrayList<>();
 
-	        String sql = "SELECT * FROM itens_entregas;";
+	        String sql = "SELECT * FROM itens_entregas WHERE entrega_id = ?;";
 
 	        try (Connection conn = connection.recuperarConexao();
 	             PreparedStatement ps = conn.prepareStatement(sql)) {

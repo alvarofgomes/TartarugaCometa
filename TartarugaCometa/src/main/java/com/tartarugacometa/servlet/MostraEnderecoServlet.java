@@ -21,10 +21,10 @@ public class MostraEnderecoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String paramId = request.getParameter("id");
+        String idEndereco = request.getParameter("id");
 
-        if (paramId != null && !paramId.isEmpty()) {
-            Integer id = Integer.valueOf(paramId);
+        if (idEndereco != null && !idEndereco.isEmpty()) {
+            Integer id = Integer.valueOf(idEndereco);
 
             Endereco endereco = enderecoBo.buscarEnderecoPorIdBO(id);
 

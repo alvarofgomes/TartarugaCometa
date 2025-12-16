@@ -27,7 +27,6 @@ public class ListarClientesServlet extends HttpServlet {
         List<Cliente> clientes = clienteBo.listarClientesBO();
 
         request.setAttribute("clientes", clientes);
-
         RequestDispatcher rd = request.getRequestDispatcher("/cliente/listar.jsp");
         rd.forward(request, response);
     }

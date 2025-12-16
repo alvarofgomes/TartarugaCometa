@@ -54,8 +54,7 @@ public class CadastrarEntregaServlet extends HttpServlet {
 
         } catch (ValidacaoException e) {
             request.setAttribute("erro", e.getMessage());
-            RequestDispatcher rd =
-                    request.getRequestDispatcher("/entrega/erro.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/entrega/erro.jsp");
             rd.forward(request, response);
         }
     }

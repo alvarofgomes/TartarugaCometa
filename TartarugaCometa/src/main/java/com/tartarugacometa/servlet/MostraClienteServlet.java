@@ -21,10 +21,10 @@ public class MostraClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String paramId = request.getParameter("id");
+        String idCliente = request.getParameter("id");
 
-        if (paramId != null && !paramId.isEmpty()) {
-            Integer id = Integer.valueOf(paramId);
+        if (idCliente != null && !idCliente.isEmpty()) {
+            Integer id = Integer.valueOf(idCliente);
             Cliente cliente = clienteBo.buscarClientePorIdBO(id);
             request.setAttribute("cliente", cliente);
 

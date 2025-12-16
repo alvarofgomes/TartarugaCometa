@@ -13,24 +13,21 @@ import com.tartarugacometa.BO.ClienteBO;
 public class RemoveClienteServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
     private ClienteBO clienteBo = new ClienteBO();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-        String paramId = request.getParameter("id");
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
 
-            try {
-                Integer id = Integer.valueOf(paramId);
+            clienteBo.deletarClienteBO(id);
 
-                clienteBo.deletarClienteBO(id);
+            response.sendRedirect(request.getContextPath() + "/clienteListar");
 
-                response.sendRedirect("/TartarugaCometa/clienteListar");
-
-            } catch (Exception e) {
-            	response.sendRedirect("Erro: " + e.getMessage());
-         }
-      
+        } catch (Exception e) {
+            throw new ServletException("Erro ao remover cliente", e);
+        }
     }
 }

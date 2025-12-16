@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tartarugacometa.BO.ProdutoBO;
-import com.tartarugacometa.model.Entrega;
 import com.tartarugacometa.model.Produto;
 
 @WebServlet("/mostraProduto")
@@ -23,11 +22,11 @@ public class MostraProdutoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String paramId = request.getParameter("id");
+        String idProduto = request.getParameter("id");
 
-        if (paramId != null && !paramId.isEmpty()) {
+        if (idProduto != null && !idProduto.isEmpty()) {
 
-            Integer id = Integer.valueOf(paramId);
+            Integer id = Integer.valueOf(idProduto);
             Produto produto = produtoBo.buscarProdutoPorIdBO(id);
 
             request.setAttribute("produto", produto);

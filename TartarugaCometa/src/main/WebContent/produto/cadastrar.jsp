@@ -15,7 +15,7 @@
 	    Nome do Produto: <input type="text" name="nomeDoProduto"><br><br>
 	    Peso: <input type="text" name="peso"><br><br>
 	    Volume: <input type="text" name="volume"><br><br>
-	    Valor: <input type="text" name="valor"><br><br>
+	    Valor: <input type="text" name="valorfrete"><br><br>
 	
 	    <input type="submit" value="Cadastrar">
 	

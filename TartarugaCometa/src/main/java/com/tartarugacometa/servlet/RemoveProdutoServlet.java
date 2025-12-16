@@ -12,25 +12,23 @@ import com.tartarugacometa.BO.ProdutoBO;
 
 @WebServlet("/removeProduto")
 public class RemoveProdutoServlet extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
-	
-	private ProdutoBO produtoBo = new ProdutoBO();
-	
+
+    private static final long serialVersionUID = 1L;
+    private ProdutoBO produtoBo = new ProdutoBO();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    	String idProduto = request.getParameter("id");
-    	
-        if (idProduto == null || idProduto.isEmpty()) {
-            throw new RuntimeException("ID do produto não informado");
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            produtoBo.deletarProdutoBO(id);
+
+            response.sendRedirect(request.getContextPath() + "/produtoListar");
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao remover produto", e);
         }
-    	
-        int id = Integer.parseInt(idProduto);
-        
-        produtoBo.deletarProdutoBO(id);
-        response.sendRedirect(request.getContextPath() + "/produtoListar");
     }
-	
 }
