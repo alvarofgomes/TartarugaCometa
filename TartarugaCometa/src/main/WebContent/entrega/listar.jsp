@@ -20,7 +20,7 @@
 	    <c:forEach items="${entregas}" var="entrega">
 	        <li>
 	            Cliente:${entrega.cliente.nome}
-	            (ID: ${entrega.cliente.id}) 
+	            ID: ${entrega.cliente.id}
 	
 	            Status:${entrega.status}
 	            Frete:${entrega.frete}
@@ -28,6 +28,7 @@
 	            <a href="mostraEntrega?id=${entrega.id}">Editar</a>
 	            <a href="removeEntrega?id=${entrega.id}">Remover</a>
 	        </li>
+	        <hr>
 	    </c:forEach>
 	</ul>
 

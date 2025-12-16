@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Erro</title>
+<title>Sucesso</title>
 </head>
 <body>
 
-	<h3>Erro ao cadastrar endereco</h3>
-	<p>${erro}</p>
+	Produto cadastrada com sucesso!  
+	Nome Do Produto: ${produto}
 	
-	<br>
-	<a href="/TartarugaCometa/enderecoCadastrar">Voltar</a>
-	
+	<br><br>
+	<a href="/TartarugaCometa/produtoListar">Voltar</a>
+
 </body>
 </html>

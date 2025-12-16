@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.conexaofactory.ConnectionFactory;
+import com.tartarugacometa.model.Cliente;
 import com.tartarugacometa.model.Produto;
 
 public class ProdutoDAO {
@@ -76,6 +77,36 @@ public class ProdutoDAO {
 		}
 		
 	}
+	
+    public Produto buscarProdutoPorIdDAO(int id) {
+    	
+        String sql = "SELECT * FROM produtos WHERE id_produto = ?;";
+
+        try (Connection conn = connectionFactory.recuperarConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+            	
+                Produto produto = new Produto();
+                produto.setId(rs.getInt("id_produto"));
+                produto.setNomeDoProduto(rs.getString("nome"));
+                produto.setPeso(rs.getDouble("peso"));
+                produto.setVolume(rs.getDouble("volume"));
+                produto.setValor(rs.getDouble("valorfrete"));
+                
+                return produto;
+            } else {
+                throw new RuntimeException("Produto com ID " + id + " não encontrado.");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+    }
 	
 	public List<Produto> listarProdutoDAO(){
 		

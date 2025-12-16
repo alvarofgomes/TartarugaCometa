@@ -8,11 +8,10 @@
 </head>
 <body>
 
-	<h3>Erro ao cadastrar endereco</h3>
+	<h3>Erro ao cadastrar produto</h3>
 	<p>${erro}</p>
 	
-	<br>
-	<a href="/TartarugaCometa/enderecoCadastrar">Voltar</a>
+	<a href="/TartarugaCometa/produtoCadastrar">Voltar</a>
 	
 </body>
 </html>

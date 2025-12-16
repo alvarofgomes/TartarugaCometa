@@ -18,13 +18,13 @@ public class AlteraEntregaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String paramId = request.getParameter("id");
+        String entregaId = request.getParameter("id");
 
-        if (paramId == null || paramId.isEmpty()) {
+        if (entregaId == null || entregaId.isEmpty()) {
             throw new RuntimeException("ID da entrega não informado");
         }
 
-        int id = Integer.parseInt(paramId);
+        int id = Integer.parseInt(entregaId);
 
         Entrega entrega = entregaBo.buscarEntregaPorIdBO(id);
 

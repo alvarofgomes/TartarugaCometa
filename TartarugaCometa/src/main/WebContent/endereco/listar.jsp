@@ -35,7 +35,7 @@
     </c:forEach>
 </ul>
 
-<a href="/TartarugaCometa/cadastrarEndereco">
+<a href="/TartarugaCometa/enderecoCadastrar">
     Cadastrar novo endereço
 </a>
 

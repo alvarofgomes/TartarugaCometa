@@ -16,7 +16,7 @@ import com.tartarugacometa.exceptions.ValidacaoException;
 import com.tartarugacometa.model.Cliente;
 import com.tartarugacometa.model.Endereco;
 
-@WebServlet("/cadastrarEndereco")
+@WebServlet("/enderecoCadastrar")
 public class CadastrarEnderecoServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

@@ -6,10 +6,10 @@
 </head>
 <body>
 
-<h3>Erro ao cadastrar entrega</h3>
-<p>${erro}</p>
-
-<a href="/TartarugaCometa/entregaCadastrar">Voltar</a>
+	<h3>Erro ao cadastrar entrega</h3>
+	<p>${erro}</p>
+	
+	<a href="/TartarugaCometa/entregaCadastrar">Voltar</a>
 
 </body>
 </html>

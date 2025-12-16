@@ -6,11 +6,11 @@
 </head>
 <body>
 
-Entrega cadastrada com sucesso!  
-Status: ${entrega}
-
-<br><br>
-<a href="/TartarugaCometa/entregaListar">Voltar</a>
+	Entrega cadastrada com sucesso!  
+	Status: ${entrega}
+	
+	<br><br>
+	<a href="/TartarugaCometa/entregaListar">Voltar</a>
 
 </body>
 </html>

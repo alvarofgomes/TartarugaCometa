@@ -10,7 +10,7 @@
 
 	<h2>Cadastro de Endereco</h2>
 	
-	<form action="/TartarugaCometa/cadastrarEndereco" method="post">
+	<form action="/TartarugaCometa/enderecoCadastrar" method="post">
 	
 		Rua: <input type="text" name="rua"><br><br>
 		Numero: <input type="text" name="numero"><br><br>

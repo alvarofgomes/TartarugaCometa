@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tartarugacometa.dao.ProdutoDAO;
 import com.tartarugacometa.exceptions.ValidacaoException;
+import com.tartarugacometa.model.Cliente;
 import com.tartarugacometa.model.Produto;
 
 public class ProdutoBO {
@@ -23,6 +24,10 @@ public class ProdutoBO {
 	public void deletarProdutoBO(int id) {
 		produtoDAO.deletarProdutoDAO(id);
 	}
+	
+    public Produto buscarProdutoPorIdBO(int id) {
+        return produtoDAO.buscarProdutoPorIdDAO(id);
+    }
 	
 	public List<Produto> listarProdutoBO(){
 		return produtoDAO.listarProdutoDAO();
