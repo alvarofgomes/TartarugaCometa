@@ -25,6 +25,7 @@ public class CadastrarClienteServlet extends HttpServlet{
 
 		RequestDispatcher rd = request.getRequestDispatcher("/cliente/cadastrar.jsp");
 		rd.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

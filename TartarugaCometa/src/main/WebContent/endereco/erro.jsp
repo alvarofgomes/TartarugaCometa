@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Erro</title>
+<style>
+a{text-decoration: none;} 
+</style>
 </head>
 <body>
 
@@ -12,7 +15,7 @@
 	<p>${erro}</p>
 	
 	<br>
-	<a href="/TartarugaCometa/enderecoCadastrar">Voltar</a>
+	<a href="/TartarugaCometa/enderecoCadastrar">Voltar ao Cadastro Endereco</a>
 	
 </body>
 </html>

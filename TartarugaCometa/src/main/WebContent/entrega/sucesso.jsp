@@ -8,9 +8,11 @@
 
 	Entrega cadastrada com sucesso!  
 	Status: ${entrega}
-	
+
 	<br><br>
-	<a href="/TartarugaCometa/entregaListar">Voltar</a>
+	<a href="/TartarugaCometa/entregaListar"><input type="submit" value="Voltar a Lista" /></a>
+	<br><br>
+	<a href="/TartarugaCometa/index.jsp"><input type="submit" value="Voltar para o Menu" /></a>
 
 </body>
 </html>

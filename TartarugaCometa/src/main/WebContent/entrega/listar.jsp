@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Entregas Listar</title>
+<style>
+a{text-decoration: none;} 
+</style>
 </head>
 <body>
 
@@ -32,7 +35,9 @@
 	    </c:forEach>
 	</ul>
 
-	<a href="/TartarugaCometa/entregaCadastrar">Nova Entrega</a>
-
+	<a href="/TartarugaCometa/entregaCadastrar"><input type="submit" value="Cadastrar nova Entrega" /></a>
+    <br><br>
+    <a href="/TartarugaCometa/index.jsp"><input type="submit" value="Voltar para o menu" /></a>
+	
 </body>
 </html>

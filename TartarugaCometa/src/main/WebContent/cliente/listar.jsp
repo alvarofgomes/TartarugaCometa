@@ -8,6 +8,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Lista de Clientes</title>
+<style>
+a{text-decoration: none;} 
+</style>
 </head>
 <body>
 
@@ -27,9 +30,9 @@
         </c:forEach>
     </ul>
 
-    <a href="/TartarugaCometa/clienteCadastrar">
-        Cadastrar novo cliente
-    </a>
+    <a href="/TartarugaCometa/clienteCadastrar"><input type="submit" value="Cadastrar novo cliente" /></a>
+    <br><br>
+    <a href="/TartarugaCometa/index.jsp"><input type="submit" value="Voltar para o menu" /></a>
 
 </body>
 </html>

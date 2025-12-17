@@ -12,7 +12,9 @@
 	Nome Do Produto: ${produto}
 	
 	<br><br>
-	<a href="/TartarugaCometa/produtoListar">Voltar</a>
+	<a href="/TartarugaCometa/produtoListar"><input type="submit" value="Voltar a Lista" /></a>
+	<br><br>
+	<a href="/TartarugaCometa/index.jsp"><input type="submit" value="Voltar para o Menu" /></a>
 
 </body>
 </html>

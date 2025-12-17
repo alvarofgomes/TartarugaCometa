@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Editar Produto</title>
+<style>
+a{text-decoration: none;} 
+</style>
 </head>
 <body>
 
@@ -23,6 +26,7 @@
 	    <input type="submit" value="Salvar">
 	</form>
 
-
+	<a href="produtoListar"><input type="submit" value="Voltar para lista" /></a>
+	
 </body>
 </html>
