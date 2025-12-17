@@ -7,6 +7,7 @@ public class Produto {
 	//volume e passado na classe (CalcularFreteProdutoController) para calcular frete. 
 	private double volume;
 	private double valor;
+	private Cliente cliente;
 
 	public Produto(String nomeDoProduto, double peso, double volume, double valor) {
 		this.nomeDoProduto = nomeDoProduto;
@@ -60,6 +61,14 @@ public class Produto {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 }

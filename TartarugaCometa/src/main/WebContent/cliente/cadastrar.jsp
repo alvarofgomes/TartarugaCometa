@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Cadastrar Cliente</title>
+<link rel="stylesheet" href="/TartarugaCometa/css/style.css">
 </head>
 <body>
 

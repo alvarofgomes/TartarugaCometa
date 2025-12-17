@@ -1,0 +1,54 @@
+package com.tartarugacometa.servlet;
+
+import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.tartarugacometa.BO.EnderecoBO;
+import com.tartarugacometa.exceptions.ValidacaoException;
+import com.tartarugacometa.model.Endereco;
+
+@WebServlet("/alteraEndereco")
+public class AlteraEnderecoServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+    private EnderecoBO enderecoBo = new EnderecoBO();
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        try {
+            Integer id = Integer.valueOf(request.getParameter("id"));
+
+            Endereco endereco = new Endereco();
+            endereco.setId(id);
+            endereco.setRua(request.getParameter("rua").trim());
+            endereco.setNumero(request.getParameter("numero").trim());
+            endereco.setBairro(request.getParameter("bairro").trim());
+            endereco.setCidade(request.getParameter("cidade").trim());
+            endereco.setEstado(request.getParameter("estado").trim());
+            endereco.setCep(request.getParameter("cep").trim());
+
+            enderecoBo.atualizarEnderecoBO(endereco);
+
+            response.sendRedirect(request.getContextPath() + "/enderecoListar");
+
+        } catch (ValidacaoException e) {
+            request.setAttribute("erro", e.getMessage());
+            RequestDispatcher rd =
+                    request.getRequestDispatcher("/endereco/formAlteraEndereco.jsp");
+            rd.forward(request, response);
+
+        } catch (Exception e) {
+            request.setAttribute("erro", "Erro inesperado: " + e.getMessage());
+            RequestDispatcher rd =
+                    request.getRequestDispatcher("/endereco/formAlteraEndereco.jsp");
+            rd.forward(request, response);
+        }
+    }
+}

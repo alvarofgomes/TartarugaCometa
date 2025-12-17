@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Menu Tartaruga Cometa</title>
+<style>
+a{text-decoration: none;} 
+
+background-color{powderblue;}
+
+</style>
+</head>
+<body>
+
+	<h1>Tartaruga Cometa</h1>
+
+	<nav>	
+		<h2>Cliente</h2>
+		<ul>
+			<li>Cadastrar:<a href="/TartarugaCometa/clienteCadastrar">Novo Cliente</a></li><br>
+			<li>Listar: <a href="/TartarugaCometa/clienteListar">Listar Cliente</a></li>
+		</ul>
+		<h2>Endereco</h2>
+		<ul>
+			<li>Cadastrar:<a href="/TartarugaCometa/enderecoCadastrar">Novo Endereço</a></li><br>
+			<li>Listar: <a href="/TartarugaCometa/enderecoListar">Listar Endereço</a></li>
+		</ul>
+		<h2>Entrega</h2>
+		<ul>
+			<li>Cadastrar:<a href="/TartarugaCometa/entregaCadastrar">Nova Entrega</a></li><br>
+			<li>Listar: <a href="/TartarugaCometa/entregaListar">Listar Entrega</a></li>
+		</ul>
+		<h2>Produto</h2>
+		<ul>
+			<li>Cadastrar:<a href="/TartarugaCometa/produtoCadastrar">Novo Produto</a></li><br>
+			<li>Listar: <a href="/TartarugaCometa/produtoListar">Listar Produto</a></li>
+		</ul>
+	</nav>
+
+</body>
+</html>

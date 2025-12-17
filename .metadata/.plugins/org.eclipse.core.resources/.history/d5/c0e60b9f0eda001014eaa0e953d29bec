@@ -1,0 +1,27 @@
+@WebServlet("/mostraEntrega")
+public class MostraEntregaServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+    private EntregaBO entregaBo = new EntregaBO();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String paramId = request.getParameter("id");
+
+        if (paramId != null && !paramId.isEmpty()) {
+
+            Integer id = Integer.valueOf(paramId);
+            Entrega entrega = entregaBo.buscarEntregaPorIdBO(id);
+
+            request.setAttribute("entrega", entrega);
+            RequestDispatcher rd =
+                request.getRequestDispatcher("/entrega/formAlteraEntrega.jsp");
+            rd.forward(request, response);
+
+        } else {
+            response.sendRedirect("/TartarugaCometa/entregaListar");
+        }
+    }
+}

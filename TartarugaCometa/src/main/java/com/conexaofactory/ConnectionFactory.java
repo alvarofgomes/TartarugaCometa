@@ -8,7 +8,7 @@ public class ConnectionFactory {
 
 	//lembrar de trocar a porta quando tiver no notebook do trabalho(5433) ou em casa(5432)
     private static final String URL =
-        "jdbc:postgresql://localhost:5433/tartaruga_cometa";
+        "jdbc:postgresql://localhost:5432/tartaruga_cometa";
     private static final String USER = "postgres";
     private static final String PASSWORD = "root";
 

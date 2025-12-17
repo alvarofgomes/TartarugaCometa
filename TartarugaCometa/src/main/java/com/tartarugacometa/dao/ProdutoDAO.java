@@ -17,7 +17,7 @@ public class ProdutoDAO {
 	 //lembrar de tratar as exception pra dar um erro de cada metodo e não um erro de runtime que e outro erro aleatorio sem base no codigo 
 	public void cadastrarProdutoDAO(Produto produto) {
 		
-		String sql = "INSERT INTO produtos (nome,peso,volume,valorfrete) VALUES (?,?,?,?);";
+		String sql = "INSERT INTO produtos (nome,peso,volume,valorfrete,clientes_id) VALUES (?,?,?,?,?);";
 		
 		try(Connection conn = connectionFactory.recuperarConexao();
 	        PreparedStatement ps = conn.prepareStatement(sql)){
@@ -26,6 +26,7 @@ public class ProdutoDAO {
 			ps.setDouble(2, produto.getPeso());
 			ps.setDouble(3,produto.getVolume());
 			ps.setDouble(4, produto.getValor());
+			ps.setInt(5, produto.getCliente().getId());
 			
             ps.execute();
 			ps.close();
@@ -108,38 +109,41 @@ public class ProdutoDAO {
         
     }
 	
-	public List<Produto> listarProdutoDAO(){
-		
-		List<Produto> produtos = new ArrayList<>();
-		String sql = "SELECT * FROM produtos;";
-		
-		try(Connection conn = connectionFactory.recuperarConexao();
-			PreparedStatement ps = conn.prepareStatement(sql);
-				
-			ResultSet rs = ps.executeQuery()){
-				
-				while(rs.next()) {
-					
-					Produto produto = new Produto(
-							
-							rs.getString("nome"),
-							rs.getDouble("peso"),
-							rs.getDouble("volume"),
-							rs.getDouble("valorfrete")
-							
-					);
-					
-					produto.setId(rs.getInt("id_produto"));
-					produtos.add(produto);
-					
-				}
+    public List<Produto> listarProdutoDAO() {
 
-				return produtos;
-				
-			}catch(SQLException e) {
-				throw new RuntimeException();
-			}
-		
-	}
+        List<Produto> produtos = new ArrayList<>();
+
+        String sql =
+            "SELECT produtos.*, clientes.id_cliente, clientes.nome AS nome_cliente " +
+            "FROM produtos " +
+            "JOIN clientes ON produtos.clientes_id = clientes.id_cliente";
+
+        try (Connection conn = connectionFactory.recuperarConexao();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("id_cliente"));
+                cliente.setNome(rs.getString("nome_cliente"));
+
+                Produto produto = new Produto();
+                produto.setId(rs.getInt("id_produto"));
+                produto.setNomeDoProduto(rs.getString("nome"));
+                produto.setPeso(rs.getDouble("peso"));
+                produto.setVolume(rs.getDouble("volume"));
+                produto.setValor(rs.getDouble("valorFrete"));
+                produto.setCliente(cliente);
+
+                produtos.add(produto);
+            }
+
+            return produtos;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 	
 }

@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Erro</title>
-<style>
-a{text-decoration: none;} 
-</style>
+<link rel="stylesheet" href="/TartarugaCometa/css/style.css">
 </head>
 <body>
 

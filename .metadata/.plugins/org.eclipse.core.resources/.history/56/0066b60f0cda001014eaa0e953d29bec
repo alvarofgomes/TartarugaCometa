@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sucesso</title>
+</head>
+<body>
+
+Entrega cadastrada com sucesso!  
+Status: ${entrega}
+
+<br><br>
+<a href="/TartarugaCometa/clienteListar">Voltar</a>
+
+</body>
+</html>

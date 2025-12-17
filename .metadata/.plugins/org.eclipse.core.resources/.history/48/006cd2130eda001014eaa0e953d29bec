@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Listar Entrega</title>
+</head>
+<body>
+
+	<h2>Entregas</h2>
+
+	<ul>
+	<c:forEach items="${entregas}" var="entrega">
+	    <li>
+	        Status: ${entrega.status} |
+	        Frete: ${entrega.frete}
+	        <a href="mostraEntrega?id=${entrega.id}&clienteId=${clienteId}">Editar</a>
+	        <a href="removeEntrega?id=${entrega.id}&clienteId=${clienteId}">Remover</a>
+	    </li>
+	</c:forEach>
+	</ul>
+	
+	<a href="entregaCadastrar?clienteId=${clienteId}">
+	    Nova Entrega
+	</a>
+
+</body>
+</html>

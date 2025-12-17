@@ -75,8 +75,7 @@ public class EnderecoDAO {
     public List<Endereco> listarEnderecosDAO() {
         List<Endereco> enderecos = new ArrayList<>();
 
-        String sql = "SELECT enderecos.id_endereco, enderecos.rua, enderecos.numero, " +
-        	    "enderecos.bairro, enderecos.cidade, enderecos.estado, enderecos.cep, " +
+        String sql = "SELECT enderecos.*, " +
         	    "clientes.id_cliente, clientes.nome " + 
         	    "FROM enderecos " +                        
         	    "JOIN clientes ON enderecos.clientes_id = clientes.id_cliente;";

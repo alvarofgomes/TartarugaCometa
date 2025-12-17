@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.tartarugacometa.BO.ProdutoBO;
 import com.tartarugacometa.exceptions.ValidacaoException;
+import com.tartarugacometa.model.Cliente;
 import com.tartarugacometa.model.Produto;
 
 @WebServlet("/produtoCadastrar")
@@ -37,11 +38,17 @@ public class CadastrarProdutoServlet extends HttpServlet {
 			Double volume = Double.valueOf(request.getParameter("volume"));
 			Double valor = Double.valueOf(request.getParameter("valorfrete"));
 			
+			int idCliente = Integer.parseInt(request.getParameter("id"));
+
+			Cliente cliente = new Cliente();
+			cliente.setId(idCliente);
+			
 			Produto produto = new Produto();
 			produto.setNomeDoProduto(nomeDoProduto);
 			produto.setPeso(peso);
 			produto.setVolume(volume);
 			produto.setValor(valor);
+			produto.setCliente(cliente);
 
 			produtoBo.cadastrarProdutoBO(produto);
 			

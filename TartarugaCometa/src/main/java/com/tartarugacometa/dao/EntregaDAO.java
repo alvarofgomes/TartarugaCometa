@@ -128,7 +128,7 @@ public class EntregaDAO {
     public Entrega buscarEntregaPorIdDAO(int id) {
 
         String sql =
-            "SELECT entregas.id_entrega, entregas.status, entregas.frete, " +
+            "SELECT entregas.*," +
             "clientes.id_cliente, clientes.nome " +
             "FROM entregas " +
             "JOIN clientes ON entregas.clientes_id = clientes.id_cliente " +

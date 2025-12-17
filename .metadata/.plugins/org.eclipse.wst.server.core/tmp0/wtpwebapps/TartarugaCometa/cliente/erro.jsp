@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Erro</title>
+<link rel="stylesheet" href="/TartarugaCometa/css/style.css">
 </head>
 <body>
 
@@ -10,7 +11,7 @@
 	<p>${erro}</p>
 
 	<br>
-	<a href="/TartarugaCometa/cliente">Voltar</a>
+	<a href="/TartarugaCometa/clienteCadastrar">Voltar ao Cadastro Cliente</a>
 
 </body>
 </html>

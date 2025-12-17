@@ -1,0 +1,38 @@
+package com.tartarugacometa.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.tartarugacometa.BO.EntregaBO;
+import com.tartarugacometa.model.Entrega;
+
+@WebServlet("/alteraEntrega")
+public class AlteraEntregaServlet extends HttpServlet {
+
+    private EntregaBO entregaBo = new EntregaBO();
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String entregaId = request.getParameter("id");
+
+        if (entregaId == null || entregaId.isEmpty()) {
+            throw new RuntimeException("ID da entrega não informado");
+        }
+
+        int id = Integer.parseInt(entregaId);
+
+        Entrega entrega = entregaBo.buscarEntregaPorIdBO(id);
+
+        entrega.setStatus(request.getParameter("status"));
+        entrega.setFrete(Double.parseDouble(request.getParameter("frete")));
+
+        entregaBo.atualizarEntregaBO(entrega);
+
+        response.sendRedirect(request.getContextPath() + "/entregaListar");
+    }
+}
