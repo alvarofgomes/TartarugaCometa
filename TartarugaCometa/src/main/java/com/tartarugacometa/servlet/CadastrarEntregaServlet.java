@@ -33,6 +33,7 @@ public class CadastrarEntregaServlet extends HttpServlet {
 
         try {
             String status = request.getParameter("status");
+            status = status.replaceAll("[0-9]", "");
             Double frete = Double.valueOf(request.getParameter("frete"));
 
             String idCliente = request.getParameter("id");

@@ -35,9 +35,12 @@ public class AlteraEntregaServlet extends HttpServlet {
                 throw new ValidacaoException("ID da entrega inválido.");
             }
 
+            String status = request.getParameter("status").trim();
+            status = status.replaceAll("[0-9]", "");
+            
             Entrega entrega = entregaBo.buscarEntregaPorIdBO(id);
 
-            entrega.setStatus(request.getParameter("status"));
+            entrega.setStatus(status);
             entrega.setFrete(Double.parseDouble(request.getParameter("frete")));
 
             entregaBo.atualizarEntregaBO(entrega);

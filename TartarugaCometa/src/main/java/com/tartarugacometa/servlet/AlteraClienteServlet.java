@@ -37,8 +37,10 @@ public class AlteraClienteServlet extends HttpServlet {
             }
           
             String nome = request.getParameter("nome").trim();
+            nome = nome.replaceAll("[0-9]", "");
             String cpfCnpj = request.getParameter("cpfCnpj").trim().replaceAll("\\s+", ""); 
-
+            cpfCnpj = cpfCnpj.replaceAll("\\D", "");
+            
             Cliente cliente = new Cliente();
             cliente.setId(id);
             cliente.setNome(nome);

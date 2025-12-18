@@ -11,8 +11,8 @@
 
 	<form action="/TartarugaCometa/entregaCadastrar" method="post">
 	
-	    Status: <input type="text" name="status"><br><br>
-	    Frete: <input type="text" name="frete"><br><br>
+	    Status: <input type="text" name="status" maxlength="50" oninput="this.value = this.value.replace(/[0-9]/g, '')" placeholder="pendente-caminho-entregue"><br><br>
+	    Frete: <input type="text" name="frete" maxlength="10"><br><br>
 	    ID do Cliente: <input type="text" name="id"><br><br>
 	
 	    <input type="submit" value="Cadastrar">

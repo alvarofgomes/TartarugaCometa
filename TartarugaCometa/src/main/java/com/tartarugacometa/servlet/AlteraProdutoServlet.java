@@ -36,10 +36,12 @@ public class AlteraProdutoServlet extends HttpServlet {
             } catch (NumberFormatException e) {
                 throw new ValidacaoException("ID do produto inválido.");
             }
+            
+            String nome = request.getParameter("nome");
+            nome = nome.replaceAll("[0-9]", "");
 
             Produto produto = produtoBo.buscarProdutoPorIdBO(id);
-
-            produto.setNomeDoProduto(request.getParameter("nome"));
+            produto.setNomeDoProduto(nome);
             produto.setPeso(Double.parseDouble(request.getParameter("peso")));
             produto.setVolume(Double.parseDouble(request.getParameter("volume")));
             produto.setValor(Double.parseDouble(request.getParameter("valorfrete")));

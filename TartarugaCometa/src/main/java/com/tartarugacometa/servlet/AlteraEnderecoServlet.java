@@ -36,15 +36,24 @@ public class AlteraEnderecoServlet extends HttpServlet {
              } catch (ValidacaoException e) {
                  throw new ValidacaoException("ID do endereço inválido.");
              }
-
+             
+             
+            String rua = request.getParameter("rua").trim();
+            String numero = request.getParameter("numero").trim();
+            String bairro = request.getParameter("bairro").trim();
+            String cidade = request.getParameter("cidade").trim();
+            String estado = request.getParameter("estado").trim();
+            String cep = request.getParameter("cep").trim().replaceAll("\\s+", "");
+            cep = cep.replaceAll("\\D", "");
+            
             Endereco endereco = new Endereco();
             endereco.setId(id);
-            endereco.setRua(request.getParameter("rua").trim());
-            endereco.setNumero(request.getParameter("numero").trim());
-            endereco.setBairro(request.getParameter("bairro").trim());
-            endereco.setCidade(request.getParameter("cidade").trim());
-            endereco.setEstado(request.getParameter("estado").trim());
-            endereco.setCep(request.getParameter("cep").trim());
+            endereco.setRua(rua);
+            endereco.setNumero(numero);
+            endereco.setBairro(bairro);
+            endereco.setCidade(cidade);
+            endereco.setEstado(estado);
+            endereco.setCep(cep);
 
             enderecoBo.atualizarEnderecoBO(endereco);
 

@@ -34,6 +34,7 @@ public class CadastrarProdutoServlet extends HttpServlet {
 		try {
 
 			String nomeDoProduto = request.getParameter("nomeDoProduto");
+			nomeDoProduto = nomeDoProduto.replaceAll("[0-9]", "");
 			Double peso = Double.valueOf(request.getParameter("peso"));
 			Double volume = Double.valueOf(request.getParameter("volume"));
 			Double valor = Double.valueOf(request.getParameter("valorfrete"));

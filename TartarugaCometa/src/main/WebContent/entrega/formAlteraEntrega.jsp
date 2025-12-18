@@ -12,10 +12,10 @@
 	<h2>Editar Entrega</h2>
 
 	<form action="alteraEntrega" method="post">
-	    <input type="hidden" name="id" value="${entrega.id}">
+	    <input type="hidden" name="id" value="${entrega.id}" >
 	    <input type="hidden" name="clienteId" value="${clienteId}">
 	
-	    Status: <input type="text" name="status" value="${entrega.status}"><br>
+	    Status: <input type="text" name="status" value="${entrega.status}" maxlength="50" oninput="this.value = this.value.replace(/[0-9]/g, '')" placeholder="pendente-caminho-entregue"><br>
 	    Frete: <input type="number" name="frete" value="${entrega.frete}"><br>
 	
 	    <input type="submit" value="Salvar">

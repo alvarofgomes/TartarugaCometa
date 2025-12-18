@@ -16,8 +16,8 @@
 	<form action="alteraCliente" method="post">
 	    <input type="hidden" name="id" value="${cliente.id}" />
 	    
-	    Nome: <input type="text" name="nome" value="${cliente.nome}" /><br/>
-	    CPF/CNPJ: <input type="text" name="cpfCnpj" value="${cliente.cpfCnpj}" /><br/>
+	    Nome: <input type="text" name="nome" value="${cliente.nome}" maxlength="50" oninput="this.value = this.value.replace(/[0-9]/g, '')"/><br/>
+	    CPF/CNPJ: <input type="text" name="cpfCnpj" value="${cliente.cpfCnpj}" minlength="11" maxlength="14" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')" /><br/>
 	    <br><br>
 	    <input type="submit" value="Salvar Alterações"/>
 	</form>

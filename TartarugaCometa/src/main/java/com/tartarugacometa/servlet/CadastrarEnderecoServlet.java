@@ -37,6 +37,7 @@ public class CadastrarEnderecoServlet extends HttpServlet {
 			String cidade = request.getParameter("cidade");
 			String estado = request.getParameter("estado");
 			String cep = request.getParameter("cep");
+			cep = cep.replaceAll("\\D", "");
 			String idCliente = request.getParameter("id");
 			int id = Integer.parseInt(idCliente);
 			

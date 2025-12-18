@@ -13,7 +13,7 @@
 
 	<form action="/TartarugaCometa/produtoCadastrar" method="post">
 	
-	    Nome do Produto: <input type="text" name="nomeDoProduto"><br><br>
+	    Nome do Produto: <input type="text" name="nomeDoProduto" maxlength="50" oninput="this.value = this.value.replace(/[0-9]/g, '')"><br><br>
 	    Peso: <input type="text" name="peso"><br><br>
 	    Volume: <input type="text" name="volume"><br><br>
 	    Valor: <input type="text" name="valorfrete"><br><br>
