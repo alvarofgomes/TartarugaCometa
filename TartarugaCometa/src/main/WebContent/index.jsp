@@ -20,7 +20,6 @@
 		</ul>
 		<h2>Endereco</h2>
 		<ul>
-			<li>Cadastrar:<a href="/TartarugaCometa/enderecoCadastrar">Novo Endereço</a></li><br>
 			<li>Listar: <a href="/TartarugaCometa/enderecoListar">Listar Endereço</a></li>
 		</ul>
 		<h2>Entrega</h2>

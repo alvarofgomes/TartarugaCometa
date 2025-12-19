@@ -13,24 +13,26 @@ public class ClienteDAO {
     private ConnectionFactory connectionFactory = new ConnectionFactory();
     //lembrar de tratar as exception pra dar um erro de cada metodo e não um erro de runtime que e outro erro aleatorio sem base no codigo 
     public void cadastrarClienteDAO(Cliente cliente) {
-    	
-        String sql = "INSERT INTO clientes (nome, cpfcnpj) VALUES (?, ?);";
+
+        String sql = "INSERT INTO clientes (nome, cpfcnpj) VALUES (?, ?)";
 
         try (Connection conn = connectionFactory.recuperarConexao();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, cliente.getNome());
             ps.setString(2, cliente.getCpfCnpj());
-            
-            ps.execute();
-			ps.close();
-			conn.close();
+            ps.executeUpdate();
 
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                cliente.setId(rs.getInt(1));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        
     }
+
     
     /*testando formas de exceptions apenas teste, isso n vai se manter nessa parte do codigo
     public static void clienteErroVazio(Cliente cliente) {

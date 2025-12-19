@@ -24,19 +24,19 @@ public class AlteraEnderecoServlet extends HttpServlet {
 
         try {
 
-        	 String idEndereco = request.getParameter("id");
+        	String idEndereco = request.getParameter("id");
 
-             if (idEndereco == null || idEndereco.trim().isEmpty()) {
-                 throw new ValidacaoException("ID do endereço não informado.");
-             }
+        	if (idEndereco == null || idEndereco.isBlank()) {
+        	    throw new ValidacaoException("Falha ao identificar o endereço.");
+        	}
 
-             int id;
-             try {
-                 id = Integer.parseInt(idEndereco);
-             } catch (ValidacaoException e) {
-                 throw new ValidacaoException("ID do endereço inválido.");
-             }
-             
+        	int id;
+        	try {
+        	    id = Integer.parseInt(idEndereco);
+        	} catch (NumberFormatException e) {
+        	    throw new ValidacaoException("ID do endereço inválido.");
+        	}
+
              
             String rua = request.getParameter("rua").trim();
             String numero = request.getParameter("numero").trim();

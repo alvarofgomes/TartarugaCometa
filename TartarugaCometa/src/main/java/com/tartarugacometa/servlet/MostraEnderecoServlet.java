@@ -23,18 +23,19 @@ public class MostraEnderecoServlet extends HttpServlet {
 
         String idEndereco = request.getParameter("id");
 
-        if (idEndereco != null && !idEndereco.isEmpty()) {
-            Integer id = Integer.valueOf(idEndereco);
-
-            Endereco endereco = enderecoBo.buscarEnderecoPorIdBO(id);
-
-            request.setAttribute("endereco", endereco);
-
-            RequestDispatcher rd =
-                    request.getRequestDispatcher("/endereco/formAlteraEndereco.jsp");
-            rd.forward(request, response);
-        } else {
-            response.sendRedirect("Erro: ID do endereço não informado.");
+        if (idEndereco == null || idEndereco.trim().isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/enderecoListar");
+            return;
         }
+
+        int id = Integer.parseInt(idEndereco);
+        Endereco endereco = enderecoBo.buscarEnderecoPorIdBO(id);
+
+        request.setAttribute("endereco", endereco);
+
+        RequestDispatcher rd =
+            request.getRequestDispatcher("/endereco/formAlteraEndereco.jsp");
+        rd.forward(request, response);
     }
+
 }

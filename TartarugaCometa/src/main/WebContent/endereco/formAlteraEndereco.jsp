@@ -12,7 +12,7 @@
 <body>
 
 	<h2>Editar Endereço</h2>
-	
+	s
 	<c:if test="${not empty erro}">
 	    <p style="color:red">${erro}</p>
 	</c:if>
@@ -25,7 +25,7 @@
 	    Bairro: <input type="text" name="bairro" value="${endereco.bairro}" maxlength="50"/><br/>
 	    Cidade: <input type="text" name="cidade" value="${endereco.cidade}" maxlength="100"/><br/>
 	    Estado: <input type="text" name="estado" value="${endereco.estado}" maxlength="50"/><br/>
-	    CEP: <input type="text" name="cep" value="${endereco.cep}" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')"/><br/>
+	    CEP: <input type="text" name="cep" value="${endereco.cep}" maxlength="8" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')"/><br/>
 	
 	    <input type="submit" value="Salvar Alterações"/>
 	</form>

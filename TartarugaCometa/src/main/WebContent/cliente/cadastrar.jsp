@@ -9,13 +9,24 @@
 
 	<h2>Cadastro de Cliente</h2>
 
-	<form action="/TartarugaCometa/clienteCadastrar" method="post">
-	
-		Nome: <input type="text" name="nome" maxlength="50" oninput="this.value = this.value.replace(/[0-9]/g, '')"/><br><br>
-		CPF/CNPJ: <input type="text" name="cpfcnpj" minlength="11" maxlength="14" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')" /><br><br>
+<form action="/TartarugaCometa/clienteCadastrar" method="post">
 
-		<input type="submit" value="Cadastrar" />
-	</form>
+    <h3>Dados do Cliente</h3>
+    
+    Nome:<input type="text" name="nome" maxlength="50" ><br><br>
+    CPF/CNPJ:<input type="text" name="cpfcnpj" maxlength="14" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')"><br><br>
+
+    <h3>Endereço</h3>
+    
+    Rua:<input type="text" name="rua" maxlength="50"><br><br>
+    Número:<input type="text" name="numero" maxlength="15"><br><br>
+    Bairro:<input type="text" name="bairro" maxlength="50"><br><br>
+    Cidade:<input type="text" name="cidade" maxlength="50"><br><br>
+    Estado:<input type="text" name="estado" maxlength="50"><br><br>
+    CEP:<input type="text" name="cep" maxlength="8" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')"><br><br>
+
+    <input type="submit" value="Cadastrar">
+</form>
 
 </body>
 </html>
