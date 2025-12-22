@@ -26,7 +26,7 @@ public class AlteraEnderecoServlet extends HttpServlet {
 
         	String idEndereco = request.getParameter("id");
 
-        	if (idEndereco == null || idEndereco.isBlank()) {
+        	if (idEndereco == null || idEndereco.isEmpty()) {
         	    throw new ValidacaoException("Falha ao identificar o endereço.");
         	}
 
