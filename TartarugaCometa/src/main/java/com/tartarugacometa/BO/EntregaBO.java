@@ -56,10 +56,6 @@ public class EntregaBO {
         if (entrega.getFrete() < 0) {
             throw new ValidacaoException("O valor do frete não pode ser negativo.");
         }
-
-        if (entrega.getCliente() == null || entrega.getCliente().getId() <= 0) {
-            throw new ValidacaoException("A entrega deve estar associada a um cliente válido.");
-        }
     }
 
 }

@@ -2,18 +2,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Sucesso</title>
+<title>Entrega Cadastrada</title>
 <link rel="stylesheet" href="/TartarugaCometa/css/style.css">
 </head>
 <body>
 
-	Entrega cadastrada com sucesso!  
-	Status: ${entrega}
+    <h2>Entrega cadastrada com sucesso!</h2>
 
-	<br><br>
-	<a href="/TartarugaCometa/entregaListar"><input type="submit" value="Voltar a Lista" /></a>
-	<br><br>
-	<a href="/TartarugaCometa/index.jsp"><input type="submit" value="Voltar para o Menu" /></a>
+    <p>Status: ${entrega.status}</p>
+    <p>Frete: ${entrega.frete}</p>
+
+    <p>Remetente (ID): ${entrega.remetente.id}</p>
+    <p>Destinatário (ID): ${entrega.destinatario.id}</p>
+
+    <p>Endereço Origem (ID): ${entrega.enderecoOrigem.id}</p>
+    <p>Endereço Destino (ID): ${entrega.enderecoDestino.id}</p>
+
+    <br>
+    <a href="/TartarugaCometa/entregaListar">
+        <input type="button" value="Voltar para lista">
+    </a>
 
 </body>
 </html>

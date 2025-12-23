@@ -17,7 +17,7 @@ public class ProdutoDAO {
 	 //lembrar de tratar as exception pra dar um erro de cada metodo e não um erro de runtime que e outro erro aleatorio sem base no codigo 
 	public void cadastrarProdutoDAO(Produto produto) {
 		
-		String sql = "INSERT INTO produtos (nome,peso,volume,valorfrete,clientes_id) VALUES (?,?,?,?,?);";
+		String sql = "INSERT INTO produtos (nome, peso, volume, valor) VALUES (?,?,?,?);";
 		
 		try(Connection conn = connectionFactory.recuperarConexao();
 	        PreparedStatement ps = conn.prepareStatement(sql)){
@@ -26,7 +26,6 @@ public class ProdutoDAO {
 			ps.setDouble(2, produto.getPeso());
 			ps.setDouble(3,produto.getVolume());
 			ps.setDouble(4, produto.getValor());
-			ps.setInt(5, produto.getCliente().getId());
 			
             ps.execute();
 			ps.close();
@@ -38,112 +37,97 @@ public class ProdutoDAO {
 	}
 	
 	public void atualizarProdutoDAO(Produto produto) {
-		
-		String sql = "UPDATE produtos SET nome = ?, peso = ?, volume = ?, valorfrete = ? WHERE id_produto = ?;";
-		
-		try(Connection conn = connectionFactory.recuperarConexao();
-		    PreparedStatement ps = conn.prepareStatement(sql)){
-			
-			ps.setString(1, produto.getNomeDoProduto());
-			ps.setDouble(2, produto.getPeso());
-			ps.setDouble(3,produto.getVolume());
-			ps.setDouble(4, produto.getValor());
-			ps.setInt(5, produto.getId());
-			
-			ps.execute();
-			ps.close();
-			conn.close();
 
-		}catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		
+	    String sql = "UPDATE produtos SET nome = ?, peso = ?, volume = ?, valor = ? WHERE id_produto = ?";
+
+	    try (Connection conn = connectionFactory.recuperarConexao();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	        ps.setString(1, produto.getNomeDoProduto());
+	        ps.setDouble(2, produto.getPeso());
+	        ps.setDouble(3, produto.getVolume());
+	        ps.setDouble(4, produto.getValor());
+	        ps.setInt(5, produto.getId());
+
+	        ps.execute();
+
+	    } catch (SQLException e) {
+	        throw new RuntimeException(e);
+	    }
 	}
-	
+
 	public void deletarProdutoDAO(int id) {
-		
-		String sql = "DELETE FROM produtos WHERE id_produto = ?;";
-		
-		try(Connection conn = connectionFactory.recuperarConexao();
-			PreparedStatement ps = conn.prepareStatement(sql)){
-			
-			ps.setInt(1, id);
-			
-            ps.execute();
-			ps.close();
-			conn.close();
-			
-		}catch(SQLException e) {
-			throw new RuntimeException();
-		}
-		
+
+	    String sql = "DELETE FROM produtos WHERE id_produto = ?";
+
+	    try (Connection conn = connectionFactory.recuperarConexao();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	        ps.setInt(1, id);
+	        ps.execute();
+
+	    } catch (SQLException e) {
+	        throw new RuntimeException(e);
+	    }
 	}
+
+	public Produto buscarProdutoPorIdDAO(int id) {
+
+	    String sql = "SELECT * FROM produtos WHERE id_produto = ?";
+
+	    try (Connection conn = connectionFactory.recuperarConexao();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	        ps.setInt(1, id);
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+
+	            Produto produto = new Produto();
+	            produto.setId(rs.getInt("id_produto"));
+	            produto.setNomeDoProduto(rs.getString("nome"));
+	            produto.setPeso(rs.getDouble("peso"));
+	            produto.setVolume(rs.getDouble("volume"));
+	            produto.setValor(rs.getDouble("valor"));
+
+	            return produto;
+	        }
+
+	        throw new RuntimeException("Produto não encontrado");
+
+	    } catch (SQLException e) {
+	        throw new RuntimeException(e);
+	    }
+	}
+
 	
-    public Produto buscarProdutoPorIdDAO(int id) {
-    	
-        String sql = "SELECT * FROM produtos WHERE id_produto = ?;";
+	public List<Produto> listarProdutoDAO() {
 
-        try (Connection conn = connectionFactory.recuperarConexao();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+	    List<Produto> produtos = new ArrayList<>();
 
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            
-            if (rs.next()) {
-            	
-                Produto produto = new Produto();
-                produto.setId(rs.getInt("id_produto"));
-                produto.setNomeDoProduto(rs.getString("nome"));
-                produto.setPeso(rs.getDouble("peso"));
-                produto.setVolume(rs.getDouble("volume"));
-                produto.setValor(rs.getDouble("valorfrete"));
-                
-                return produto;
-            } else {
-                throw new RuntimeException("Produto com ID " + id + " não encontrado.");
-            }
+	    String sql = "SELECT * FROM produtos";
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        
-    }
-	
-    public List<Produto> listarProdutoDAO() {
+	    try (Connection conn = connectionFactory.recuperarConexao();
+	         PreparedStatement ps = conn.prepareStatement(sql);
+	         ResultSet rs = ps.executeQuery()) {
 
-        List<Produto> produtos = new ArrayList<>();
+	        while (rs.next()) {
 
-        String sql =
-            "SELECT produtos.*, clientes.id_cliente, clientes.nome AS nome_cliente " +
-            "FROM produtos " +
-            "JOIN clientes ON produtos.clientes_id = clientes.id_cliente";
+	            Produto produto = new Produto();
+	            produto.setId(rs.getInt("id_produto"));
+	            produto.setNomeDoProduto(rs.getString("nome"));
+	            produto.setPeso(rs.getDouble("peso"));
+	            produto.setVolume(rs.getDouble("volume"));
+	            produto.setValor(rs.getDouble("valor"));
 
-        try (Connection conn = connectionFactory.recuperarConexao();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+	            produtos.add(produto);
+	        }
 
-            while (rs.next()) {
+	        return produtos;
 
-                Cliente cliente = new Cliente();
-                cliente.setId(rs.getInt("id_cliente"));
-                cliente.setNome(rs.getString("nome_cliente"));
-
-                Produto produto = new Produto();
-                produto.setId(rs.getInt("id_produto"));
-                produto.setNomeDoProduto(rs.getString("nome"));
-                produto.setPeso(rs.getDouble("peso"));
-                produto.setVolume(rs.getDouble("volume"));
-                produto.setValor(rs.getDouble("valorFrete"));
-                produto.setCliente(cliente);
-
-                produtos.add(produto);
-            }
-
-            return produtos;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+	    } catch (SQLException e) {
+	        throw new RuntimeException(e);
+	    }
+	}
 	
 }

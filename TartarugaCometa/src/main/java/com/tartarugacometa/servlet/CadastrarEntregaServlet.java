@@ -11,20 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.tartarugacometa.BO.EntregaBO;
 import com.tartarugacometa.exceptions.ValidacaoException;
 import com.tartarugacometa.model.Cliente;
+import com.tartarugacometa.model.Endereco;
 import com.tartarugacometa.model.Entrega;
 
 @WebServlet("/entregaCadastrar")
 public class CadastrarEntregaServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private EntregaBO entregaBo = new EntregaBO();
+    private EntregaBO entregaBO = new EntregaBO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher rd = request.getRequestDispatcher("/entrega/cadastrar.jsp");
-        rd.forward(request, response);
+        request.getRequestDispatcher("/entrega/cadastrar.jsp")
+               .forward(request, response);
     }
 
     @Override
@@ -33,30 +34,58 @@ public class CadastrarEntregaServlet extends HttpServlet {
 
         try {
             String status = request.getParameter("status");
-            status = status.replaceAll("[0-9]", "");
-            Double frete = Double.valueOf(request.getParameter("frete"));
+            String freteStr = request.getParameter("frete");
+            String remetenteIdStr = request.getParameter("remetenteId");
+            String destinatarioIdStr = request.getParameter("destinatarioId");
+            String enderecoOrigemIdStr = request.getParameter("enderecoOrigemId");
+            String enderecoDestinoIdStr = request.getParameter("enderecoDestinoId");
 
-            String idCliente = request.getParameter("id");
-            int id = Integer.parseInt(idCliente);
+            if (status == null || status.isEmpty()
+                || freteStr == null || freteStr.isEmpty()
+                || remetenteIdStr == null || remetenteIdStr.isEmpty()
+                || destinatarioIdStr == null || destinatarioIdStr.isEmpty()
+                || enderecoOrigemIdStr == null || enderecoOrigemIdStr.isEmpty()
+                || enderecoDestinoIdStr == null || enderecoDestinoIdStr.isEmpty()) {
 
-            Cliente cliente = new Cliente();
-            cliente.setId(id);
+                throw new RuntimeException("Todos os campos são obrigatórios.");
+            }
+
+            double frete = Double.parseDouble(freteStr);
+            int remetenteId = Integer.parseInt(remetenteIdStr);
+            int destinatarioId = Integer.parseInt(destinatarioIdStr);
+            int enderecoOrigemId = Integer.parseInt(enderecoOrigemIdStr);
+            int enderecoDestinoId = Integer.parseInt(enderecoDestinoIdStr);
+
+            Cliente remetente = new Cliente();
+            remetente.setId(remetenteId);
+
+            Cliente destinatario = new Cliente();
+            destinatario.setId(destinatarioId);
+
+            Endereco enderecoOrigem = new Endereco();
+            enderecoOrigem.setId(enderecoOrigemId);
+
+            Endereco enderecoDestino = new Endereco();
+            enderecoDestino.setId(enderecoDestinoId);
 
             Entrega entrega = new Entrega();
             entrega.setStatus(status);
             entrega.setFrete(frete);
-            entrega.setCliente(cliente);
+            entrega.setRemetente(remetente);
+            entrega.setDestinatario(destinatario);
+            entrega.setEnderecoOrigem(enderecoOrigem);
+            entrega.setEnderecoDestino(enderecoDestino);
 
-            entregaBo.cadastrarEntregaBO(entrega);
+            entregaBO.cadastrarEntregaBO(entrega);
 
-            request.setAttribute("entrega", entrega.getStatus());
-            RequestDispatcher rd = request.getRequestDispatcher("/entrega/sucesso.jsp");
-            rd.forward(request, response);
+            request.setAttribute("entrega", entrega);
+            request.getRequestDispatcher("/entrega/sucesso.jsp")
+                   .forward(request, response);
 
-        } catch (ValidacaoException e) {
+        } catch (Exception e) {
             request.setAttribute("erro", e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/entrega/erro.jsp");
-            rd.forward(request, response);
+            request.getRequestDispatcher("/entrega/erro.jsp")
+                   .forward(request, response);
         }
     }
 }

@@ -79,7 +79,7 @@ public class ClienteDAO {
         EntregaDAO entregaDAO = new EntregaDAO();
         ItensEntregasDAO itensDAO = new ItensEntregasDAO();
         
-        List<Entrega> entregas = entregaDAO.listarEntregasPorClienteDAO(id);
+       List<Entrega> entregas = entregaDAO.listarEntregasPorClienteDAO(id);
     	
         //deletar o de itens
         for (Entrega entrega : entregas) {

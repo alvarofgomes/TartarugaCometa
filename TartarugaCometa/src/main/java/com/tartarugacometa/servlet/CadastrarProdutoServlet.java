@@ -37,23 +37,17 @@ public class CadastrarProdutoServlet extends HttpServlet {
 			nomeDoProduto = nomeDoProduto.replaceAll("[0-9]", "");
 			Double peso = Double.valueOf(request.getParameter("peso"));
 			Double volume = Double.valueOf(request.getParameter("volume"));
-			Double valor = Double.valueOf(request.getParameter("valorfrete"));
-			
-			int idCliente = Integer.parseInt(request.getParameter("id"));
-
-			Cliente cliente = new Cliente();
-			cliente.setId(idCliente);
+			Double valor = Double.valueOf(request.getParameter("valor"));
 			
 			Produto produto = new Produto();
 			produto.setNomeDoProduto(nomeDoProduto);
 			produto.setPeso(peso);
 			produto.setVolume(volume);
 			produto.setValor(valor);
-			produto.setCliente(cliente);
-
+			
 			produtoBo.cadastrarProdutoBO(produto);
 			
-            request.setAttribute("produto", produto.getNomeDoProduto());
+            request.setAttribute("produto", produto);
             RequestDispatcher rd = request.getRequestDispatcher("/produto/sucesso.jsp");
             rd.forward(request, response);
 			

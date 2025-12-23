@@ -9,9 +9,9 @@
 </head>
 <body>
 
-	Produto cadastrada com sucesso!  
-	Nome Do Produto: ${produto}
-	
+	Produto cadastrado com sucesso!  
+	Nome do Produto: ${produto.nomeDoProduto}
+
 	<br><br>
 	<a href="/TartarugaCometa/produtoListar"><input type="submit" value="Voltar a Lista" /></a>
 	<br><br>

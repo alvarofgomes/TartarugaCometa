@@ -27,7 +27,6 @@ public class EntregaController {
 	        sc.nextLine();
 	        
 	        Cliente cliente = clienteBo.buscarClientePorIdBO(idCliente);
-	        entrega.setCliente(cliente);
 	        
 	        System.out.println("Status: ");
 	        entrega.setStatus(sc.nextLine());

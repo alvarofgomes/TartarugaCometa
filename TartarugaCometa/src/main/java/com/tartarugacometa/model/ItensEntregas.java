@@ -5,6 +5,7 @@ public class ItensEntregas {
 	private int id;
 	private Entrega entrega;
 	private Produto produto;
+	private int quantidade;
 	
 	public int getId() {
 		return id;
@@ -24,5 +25,13 @@ public class ItensEntregas {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+	
 	
 }

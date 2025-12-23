@@ -44,7 +44,7 @@ public class AlteraProdutoServlet extends HttpServlet {
             produto.setNomeDoProduto(nome);
             produto.setPeso(Double.parseDouble(request.getParameter("peso")));
             produto.setVolume(Double.parseDouble(request.getParameter("volume")));
-            produto.setValor(Double.parseDouble(request.getParameter("valorfrete")));
+            produto.setValor(Double.parseDouble(request.getParameter("valor")));
 
             produtoBo.atualizarProdutoBO(produto);
 

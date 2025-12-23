@@ -5,26 +5,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Editar Produto</title>
-<link rel="stylesheet" href="/TartarugaCometa/css/style.css">>
+<link rel="stylesheet" href="/TartarugaCometa/css/style.css">
 </head>
 <body>
 
-	<h2>Editar Produto</h2>
+    <h2>Editar Produto</h2>
 
-	<form action="alteraProduto" method="post">
+    <form action="alteraProduto" method="post">
 
-		
-    	<input type="hidden" name="id" value="${produto.id}">
+        <input type="hidden" name="id" value="${produto.id}">
 
-	    Nome do Produto:<input type="text" name="nome" value="${produto.nomeDoProduto}" maxlength="50" oninput="this.value = this.value.replace(/[0-9]/g, '')"><br>
-		Peso:<input type="text" name="peso" value="${produto.peso}"><br>
-		Volume:<input type="text" name="volume" value="${produto.volume}"><br>
-		Valor:<input type="text" name="valorfrete" value="${produto.valor}"><br>
-	
-	    <input type="submit" value="Salvar">
-	</form>
+        Nome do Produto:
+        <input type="text" name="nomeDoProduto"
+               value="${produto.nomeDoProduto}" maxlength="50"
+               oninput="this.value = this.value.replace(/[0-9]/g, '')"><br><br>
 
-	<a href="produtoListar"><input type="submit" value="Voltar para lista" /></a>
-	
+        Peso:
+        <input type="number" step="0.01" name="peso"
+               value="${produto.peso}"><br><br>
+
+        Volume:
+        <input type="number" step="0.01" name="volume"
+               value="${produto.volume}"><br><br>
+
+        Valor do Frete:
+        <input type="number" step="0.01" name="valor"
+               value="${produto.valor}"><br><br>
+
+        <input type="submit" value="Salvar">
+    </form>
+
+    <a href="produtoListar">
+        <input type="submit" value="Voltar para lista" />
+    </a>
+
 </body>
 </html>
