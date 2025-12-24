@@ -188,19 +188,24 @@ public class ClienteDAO {
     }
 
     public List<Cliente> listarClientesDAO() {
+
         List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT * FROM clientes ORDER BY nome";
+
+        String sql = "SELECT id_cliente, nome, cpfcnpj FROM clientes";
 
         try (Connection conn = connectionFactory.recuperarConexao();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
+
                 Cliente cliente = new Cliente(
                     rs.getString("nome"),
                     rs.getString("cpfcnpj")
                 );
+
                 cliente.setId(rs.getInt("id_cliente"));
+
                 clientes.add(cliente);
             }
 
@@ -210,6 +215,7 @@ public class ClienteDAO {
 
         return clientes;
     }
+
     
     public Cliente buscarClientePorIdDAO(int id) {
         String sql = "SELECT * FROM clientes WHERE id_cliente = ?";

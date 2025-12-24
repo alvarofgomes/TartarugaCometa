@@ -29,7 +29,7 @@ public class EnderecoBO {
     }
 
     public List<Endereco> listarEnderecoBO() {
-        return enderecoDAO.listarEnderecosDAO();
+        return enderecoDAO.listarEnderecoBO();
     }
 
     public Endereco buscarEnderecoPorIdBO(int id) {

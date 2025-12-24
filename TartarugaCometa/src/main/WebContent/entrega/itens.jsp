@@ -30,22 +30,23 @@
 
 <hr>
 
-<h3>Editar Status da Entrega</h3>
+<c:if test="${entrega.status != 'entregue'}">
+    <h3>Editar Status da Entrega</h3>
 
-<form action="${pageContext.request.contextPath}/alteraEntrega" method="post">
-    <input type="hidden" name="id" value="${entrega.id}">
-    <input type="hidden" name="frete" value="${entrega.frete}">
+    <form action="${pageContext.request.contextPath}/alteraEntrega" method="post">
+        <input type="hidden" name="id" value="${entrega.id}">
+        <input type="hidden" name="frete" value="${entrega.frete}">
 
-    <select name="status">
-        <option value="pendente" ${entrega.status == 'pendente' ? 'selected' : ''}>Pendente</option>
-        <option value="caminho" ${entrega.status == 'caminho' ? 'selected' : ''}>Em Caminho</option>
-        <option value="entregue" ${entrega.status == 'entregue' ? 'selected' : ''}>Entregue</option>
-    </select>
+        <select name="status">
+            <option value="pendente" ${entrega.status == 'pendente' ? 'selected' : ''}>Pendente</option>
+            <option value="caminho" ${entrega.status == 'caminho' ? 'selected' : ''}>Em Caminho</option>
+            <option value="entregue">Entregue</option>
+        </select>
 
-    <input type="submit" value="Atualizar Status">
-</form>
-
-<hr>
+        <input type="submit" value="Atualizar Status">
+    </form>
+    <hr>
+</c:if>
 
 <h3>Produtos da Entrega</h3>
 
@@ -66,18 +67,23 @@
             <td>${item.produto.nomeDoProduto}</td>
             <td>${item.quantidade}</td>
             <td>
-                <c:if test="${entrega.status != 'entregue'}">
-                    <c:url var="urlRemover" value="/removerItemEntrega">
-                        <c:param name="idItem" value="${item.id}" />
-                        <c:param name="entregaId" value="${entrega.id}" />
-                    </c:url>
-
-                    <a href="${urlRemover}"
-                       onclick="return confirm('Remover este produto da entrega?');">
-                       Remover
-                    </a>
-                </c:if>
-
+				<c:if test="${entrega.status == 'pendente'}">
+				    <c:url var="urlRemover" value="/removerItemEntrega">
+				        <c:param name="idItem" value="${item.id}" />
+				        <c:param name="entregaId" value="${entrega.id}" />
+				    </c:url>
+				
+				    <a href="${urlRemover}"
+				       onclick="return confirm('Remover este produto da entrega?');">
+				       Remover
+				    </a>
+				</c:if>
+				
+				<c:if test="${entrega.status != 'pendente'}">
+				    <span style="color: gray;">
+				        Remover bloqueado (status: ${entrega.status})
+				    </span>
+				</c:if>
                 <c:if test="${entrega.status == 'entregue'}">
                     <span style="color: gray;">Entrega finalizada</span>
                 </c:if>
@@ -89,14 +95,23 @@
 
 <hr>
 
-<h3>Adicionar Produto à Entrega</h3>
-
 <c:if test="${entrega.status != 'entregue'}">
     <form action="${pageContext.request.contextPath}/cadastrarItensEntrega" method="post">
-        <input type="hidden" name="entregaId" value="${entrega.id}">
 
-        Produto (ID):
-        <input type="number" name="produtoId" required>
+        <input type="hidden" name="entregaId" value="${entrega.id}">
+        
+        <h3>Adicionar Produto à Entrega</h3>
+
+        Produto:
+        <select name="produtoId" required>
+            <option value="">Selecione um produto</option>
+
+            <c:forEach items="${produtos}" var="produto">
+                <option value="${produto.id}">
+                    ${produto.nomeDoProduto}
+                </option>
+            </c:forEach>
+        </select>
 
         Quantidade:
         <input type="number" name="quantidade" min="1" required>
@@ -104,6 +119,7 @@
         <input type="submit" value="Adicionar Produto">
     </form>
 </c:if>
+
 
 <c:if test="${entrega.status == 'entregue'}">
     <p style="color:red;"><strong>Entrega concluída. Não é possível alterar produtos.</strong></p>

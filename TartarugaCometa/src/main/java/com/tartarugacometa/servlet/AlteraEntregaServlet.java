@@ -45,7 +45,7 @@ public class AlteraEntregaServlet extends HttpServlet {
 
             entregaBo.atualizarEntregaBO(entrega);
 
-            response.sendRedirect(request.getContextPath() + "/entregaListar");
+            response.sendRedirect(request.getContextPath() + "/entregaDetalhe?id=" + entrega.getId());
 
         } catch (ValidacaoException e) {
             request.setAttribute("erro", e.getMessage());

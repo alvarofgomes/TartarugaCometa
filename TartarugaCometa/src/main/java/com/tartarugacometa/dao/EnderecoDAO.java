@@ -72,7 +72,7 @@ public class EnderecoDAO {
         }
     }
     
-    public List<Endereco> listarEnderecosDAO() {
+    public List<Endereco> listarEnderecoBO() {
         List<Endereco> enderecos = new ArrayList<>();
 
         String sql = "SELECT enderecos.*, " +
@@ -201,5 +201,32 @@ public class EnderecoDAO {
         }
     }
 
-    
+    public List<Endereco> listarEnderecosPorCliente(int clienteId) {
+        List<Endereco> enderecos = new ArrayList<>();
+
+        String sql = "SELECT * FROM enderecos WHERE cliente_id = ?";
+
+        try (Connection conn = connection.recuperarConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, clienteId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Endereco e = new Endereco();
+                e.setId(rs.getInt("id_endereco"));
+                e.setRua(rs.getString("rua"));
+                e.setNumero(rs.getString("numero"));
+                e.setBairro(rs.getString("bairro"));
+                e.setCidade(rs.getString("cidade"));
+                enderecos.add(e);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return enderecos;
+    }
+
 }

@@ -25,17 +25,26 @@
 					Remetente: ${entrega.remetente.nome} <br>
 					Destinatário: ${entrega.destinatario.nome} <br>
 					
-					Origem:
+					Endereço de Origem:
 					${entrega.enderecoOrigem.rua}, ${entrega.enderecoOrigem.numero}
 					- ${entrega.enderecoOrigem.bairro} <br>
 					
-					Destino:
+					Endereço de Destino:
 					${entrega.enderecoDestino.rua}, ${entrega.enderecoDestino.numero}
 					- ${entrega.enderecoDestino.bairro} <br>
 
 
-				<a href="entregaDetalhe?id=${entrega.id}">Produtos</a> |
-				<a href="mostraEntrega?id=${entrega.id}">Editar</a> |
+				<c:if test="${entrega.status != 'entregue'}">
+				    <a href="entregaDetalhe?id=${entrega.id}">
+				        Adicionar Produtos |
+				    </a>
+				</c:if>
+				<c:if test="${entrega.status == 'entregue'}">
+					    <span style="color: #49708a;">
+							Produto Entregue 
+					    </span>
+					    |
+				</c:if>
 				<a href="removeEntrega?id=${entrega.id}"
 				   onclick="return confirm('Tem certeza?');">Remover</a>
             </li>

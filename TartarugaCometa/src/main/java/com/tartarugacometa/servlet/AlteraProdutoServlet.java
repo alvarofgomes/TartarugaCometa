@@ -37,7 +37,7 @@ public class AlteraProdutoServlet extends HttpServlet {
                 throw new ValidacaoException("ID do produto inválido.");
             }
             
-            String nome = request.getParameter("nome");
+            String nome = request.getParameter("nomeDoProduto");
             nome = nome.replaceAll("[0-9]", "");
 
             Produto produto = produtoBo.buscarProdutoPorIdBO(id);

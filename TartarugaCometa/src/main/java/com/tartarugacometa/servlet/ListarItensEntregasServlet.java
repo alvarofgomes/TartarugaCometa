@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.tartarugacometa.BO.EntregaBO;
 import com.tartarugacometa.BO.ItensEntregasBO;
+import com.tartarugacometa.BO.ProdutoBO;
 import com.tartarugacometa.model.Entrega;
 import com.tartarugacometa.model.ItensEntregas;
 import com.tartarugacometa.model.Produto;
@@ -20,6 +21,7 @@ public class ListarItensEntregasServlet extends HttpServlet {
 
     private ItensEntregasBO itensBo = new ItensEntregasBO();
     private EntregaBO entregaBo = new EntregaBO();
+    private ProdutoBO produtoBo = new ProdutoBO(); // 👈 novo
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,6 +38,7 @@ public class ListarItensEntregasServlet extends HttpServlet {
 
         request.setAttribute("entrega", entregaBo.buscarEntregaPorIdBO(entregaId));
         request.setAttribute("itens", itensBo.listarPorEntrega(entregaId));
+        request.setAttribute("produtos", produtoBo.listarProdutoBO());
 
         request.getRequestDispatcher("/entrega/itens.jsp")
                .forward(request, response);
