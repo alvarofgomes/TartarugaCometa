@@ -250,12 +250,15 @@ public class EntregaDAO {
 
     public List<Entrega> listarEntregasPorClienteDAO(int clienteId) {
         List<Entrega> entregas = new ArrayList<>();
-        String sql = "SELECT * FROM entregas WHERE clientes_id = ?;";
-
+        
+        String sql = "SELECT * FROM entregas WHERE remetente_id = ? OR destinatario_id = ?";
+        
         try (Connection conn = connection.recuperarConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setInt(1, clienteId);
+            ps.setInt(1, clienteId); 
+            ps.setInt(2, clienteId);  
+            
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -263,13 +266,23 @@ public class EntregaDAO {
                 entrega.setId(rs.getInt("id_entrega"));
                 entrega.setStatus(rs.getString("status"));
                 entrega.setFrete(rs.getDouble("frete"));
+                
+                Cliente remetente = new Cliente();
+                remetente.setId(rs.getInt("remetente_id"));
+                
+                Cliente destinatario = new Cliente();
+                destinatario.setId(rs.getInt("destinatario_id"));
+                
+                entrega.setRemetente(remetente);
+                entrega.setDestinatario(destinatario);
+                
                 entregas.add(entrega);
             }
 
             return entregas;
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao listar entregas por cliente: " + e.getMessage(), e);
         }
     }
     

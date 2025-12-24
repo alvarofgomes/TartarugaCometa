@@ -1,9 +1,14 @@
 package com.tartarugacometa.model;
+
+import java.util.List;
+
 public class Cliente {
 
 	private int id;
 	private String nome;
 	private String cpfCnpj;
+	private List<Endereco> enderecos;
+
 	
 	public Cliente(String nome, String cpfCnpj) {
 		this.nome = nome;
@@ -30,6 +35,13 @@ public class Cliente {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public List<Endereco> getEnderecos() {
+	    return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+	    this.enderecos = enderecos;
 	}
 	
 }

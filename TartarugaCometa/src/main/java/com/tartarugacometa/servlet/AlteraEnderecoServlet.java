@@ -57,7 +57,7 @@ public class AlteraEnderecoServlet extends HttpServlet {
 
             enderecoBo.atualizarEnderecoBO(endereco);
 
-            response.sendRedirect(request.getContextPath() + "/enderecoListar");
+            response.sendRedirect(request.getContextPath() + "/clienteListar");
 
         } catch (ValidacaoException e) {
             request.setAttribute("erro", e.getMessage());

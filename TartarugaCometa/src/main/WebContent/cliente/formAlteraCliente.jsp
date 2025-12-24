@@ -115,8 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <input type="submit" value="Salvar Alterações"/>
     </form>
-    
-    <a href="clienteListar"><input type="submit" value="Voltar para lista" /></a>
 
 </body>
 </html>

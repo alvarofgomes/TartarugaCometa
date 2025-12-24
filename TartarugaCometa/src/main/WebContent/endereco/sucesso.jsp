@@ -9,10 +9,10 @@
 </head>
 <body>
 	
-	Endereco ${endereco} cadastrado com sucesso!
+	Endereco cadastrado com sucesso!
 	
 	<br><br>
-	<a href="/TartarugaCometa/enderecoListar"><input type="submit" value="Voltar a Lista" /></a>
+	<a href="/TartarugaCometa/clienteListar"><input type="submit" value="Voltar a Lista" /></a>
 	<br><br>
 	<a href="/TartarugaCometa/index.jsp"><input type="submit" value="Voltar para o Menu" /></a>
 	

@@ -25,7 +25,7 @@ public class RemoveEnderecoServlet extends HttpServlet {
 
             enderecoBo.deletarEnderecoBO(id);
 
-            response.sendRedirect(request.getContextPath() + "/enderecoListar");
+            response.sendRedirect(request.getContextPath() + "/clienteListar");
 
         } catch (Exception e) {
             throw new ServletException("Erro ao remover endereço", e);

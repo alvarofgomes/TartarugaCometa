@@ -150,5 +150,56 @@ public class EnderecoDAO {
         }
     }
 
+    public List<Endereco> listarComCliente() {
+
+        List<Endereco> enderecos = new ArrayList<>();
+
+        String sql =
+            "SELECT \n"
+            + "    e.id_endereco,\n"
+            + "    e.rua,\n"
+            + "    e.numero,\n"
+            + "    e.bairro,\n"
+            + "    e.cidade,\n"
+            + "    e.estado,\n"
+            + "    e.cep,\n"
+            + "\n"
+            + "    c.id_cliente,\n"
+            + "    c.nome,\n"
+            + "    c.cpfcnpj\n"
+            + "FROM enderecos e\n"
+            + "JOIN clientes c ON e.clientes_id = c.id_cliente;";
+
+        try (Connection conn = connection.recuperarConexao();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("id_cliente"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setCpfCnpj(rs.getString("cpfcnpj"));
+
+                Endereco endereco = new Endereco();
+                endereco.setId(rs.getInt("id_endereco"));
+                endereco.setRua(rs.getString("rua"));
+                endereco.setNumero(rs.getString("numero"));
+                endereco.setBairro(rs.getString("bairro"));
+                endereco.setCidade(rs.getString("cidade"));
+                endereco.setEstado(rs.getString("estado"));
+                endereco.setCep(rs.getString("cep"));
+                endereco.setCliente(cliente);
+
+                enderecos.add(endereco);
+            }
+
+            return enderecos;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     
 }

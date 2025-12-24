@@ -22,7 +22,7 @@ public class CadastrarClienteServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	private ClienteBO clienteBo = new ClienteBO();
-	private EnderecoBO endercoBo = new EnderecoBO();
+	private EnderecoBO enderecoBo = new EnderecoBO();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -56,7 +56,7 @@ public class CadastrarClienteServlet extends HttpServlet{
 	        Endereco endereco = new Endereco(rua, numero, bairro, cidade, estado, cep);
 	        endereco.setCliente(cliente);
 
-	        endercoBo.cadastrarEnderecoBO(endereco);
+	        enderecoBo.cadastrarEnderecoBO(endereco);
 
 	        RequestDispatcher rd = request.getRequestDispatcher("/cliente/sucesso.jsp");
 	        rd.forward(request, response);

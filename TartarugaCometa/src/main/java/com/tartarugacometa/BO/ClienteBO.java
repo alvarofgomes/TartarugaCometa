@@ -24,12 +24,31 @@ public class ClienteBO {
     }
 
     public void deletarClienteBO(int id) {
-        if (id <= 0) {
-            throw new ValidacaoException("ID do cliente inválido para exclusão.");
-        }
-        clienteDAO.deletarClienteDAO(id);
-    }
+        try {
 
+            clienteDAO.deletarClienteSimplesDAO(id);
+            
+        } catch (Exception e) {
+
+            if (e.getMessage().contains("violates foreign key constraint") || 
+                e.getMessage().contains("entregas associadas")) {
+                
+                try {
+                    clienteDAO.deletarClienteDAO(id); 
+                } catch (Exception e2) {
+                    throw new RuntimeException(
+                        "Não foi possível remover o cliente. " +
+                        "Existem entregas associadas que impedem a remoção. " +
+                        "Remova as entregas primeiro ou contate o administrador. " +
+                        "Erro: " + e2.getMessage());
+                }
+            } else {
+
+                throw new RuntimeException("Erro ao remover cliente: " + e.getMessage());
+            }
+        }
+    }
+    
     public List<Cliente> listarClientesBO() {
         return clienteDAO.listarClientesDAO();
     }

@@ -10,27 +10,23 @@
 </head>
 <body>
 
-	<h1>Tartaruga Cometa</h1>
+	<h1 style="color: #c21f40;">Tartaruga Cometa</h1>
 
 	<nav>	
-		<h2>Cliente</h2>
+		<h2>Cliente e Endereço</h2>
 		<ul>
-			<li>Cadastrar:<a href="/TartarugaCometa/clienteCadastrar">Novo Cliente</a></li><br>
-			<li>Listar: <a href="/TartarugaCometa/clienteListar">Listar Cliente</a></li>
-		</ul>
-		<h2>Endereco</h2>
-		<ul>
-			<li>Listar: <a href="/TartarugaCometa/enderecoListar">Listar Endereço</a></li>
+			<li><a href="/TartarugaCometa/clienteCadastrar">Cadastrar</a></li><br>
+			<li><a href="/TartarugaCometa/clienteListar">Listar</a></li>
 		</ul>
 		<h2>Entrega</h2>
 		<ul>
-			<li>Cadastrar:<a href="/TartarugaCometa/entregaCadastrar">Nova Entrega</a></li><br>
-			<li>Listar: <a href="/TartarugaCometa/entregaListar">Listar Entrega</a></li>
+			<li><a href="/TartarugaCometa/entregaCadastrar">Cadastrar</a></li><br>
+			<li><a href="/TartarugaCometa/entregaListar">Listar</a></li>
 		</ul>
 		<h2>Produto</h2>
 		<ul>
-			<li>Cadastrar:<a href="/TartarugaCometa/produtoCadastrar">Novo Produto</a></li><br>
-			<li>Listar: <a href="/TartarugaCometa/produtoListar">Listar Produto</a></li>
+			<li><a href="/TartarugaCometa/produtoCadastrar">Cadastrar</a></li><br>
+			<li><a href="/TartarugaCometa/produtoListar">Listar</a></li>
 		</ul>
 	</nav>
 
