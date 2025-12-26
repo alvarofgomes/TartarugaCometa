@@ -8,12 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Lista de Clientes</title>
+<title>Dados Dos Clientes</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 
-<h2>Lista de Clientes e Endereços</h2>
+<h2>Dados Dos Clientes</h2>
 
 <ul>
 <c:forEach items="${clientes}" var="cliente">
@@ -139,13 +139,13 @@
 <br>
 
 <a href="${pageContext.request.contextPath}/clienteCadastrar">
-    <input type="button" value="Cadastrar novo cliente" />
+    <input type="button" value="Cadastrar" />
 </a>
 
 <br><br>
 
 <a href="${pageContext.request.contextPath}/index.jsp">
-    <input type="button" value="Voltar para o menu" />
+    <input type="button" value="Voltar" />
 </a>
 
 </body>

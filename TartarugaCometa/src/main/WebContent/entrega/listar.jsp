@@ -53,13 +53,13 @@
     </ul>
 
     <a href="/TartarugaCometa/entregaCadastrar">
-        <input type="submit" value="Cadastrar nova Entrega" />
+        <input type="submit" value="Cadastrar" />
     </a>
 	
     <br><br>
 
     <a href="/TartarugaCometa/index.jsp">
-        <input type="submit" value="Voltar para o menu" />
+        <input type="submit" value="Voltar" />
     </a>
 
 </body>

@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <form action="alteraCliente" method="post">
         <input type="hidden" name="id" value="${cliente.id}" />
         
-        Nome: <input type="text" name="nome" value="${cliente.nome}" maxlength="50" required/><br/><br/>
+        Nome: <input type="text" name="nome" value="${cliente.nome}" maxlength="50" oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\sçÇ]/g, '')" required/><br/><br/>
         
         Tipo de Pessoa:
         <select name="tipoPessoa" id="tipoPessoa">

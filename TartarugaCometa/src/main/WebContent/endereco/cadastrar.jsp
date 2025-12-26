@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
             Rua: <input type="text" name="rua" maxlength="50" required><br><br>
             Número: <input type="text" name="numero" maxlength="10" required><br><br>
             Bairro: <input type="text" name="bairro" maxlength="50" required><br><br>
-            Cidade: <input type="text" name="cidade" maxlength="50" required><br><br>
-            Estado: <input type="text" name="estado" maxlength="2" placeholder="PE" required><br><br>
+            Cidade: <input type="text" name="cidade" maxlength="50" oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\sçÇ]/g, '')" required><br><br>
+            Estado: <input type="text" name="estado" maxlength="2" placeholder="PE" oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\sçÇ]/g, '')" required><br><br>
             CEP: <input type="text" name="cep" maxlength="9" placeholder="00000-000" required><br><br>
         
             <input type="submit" value="Cadastrar" />

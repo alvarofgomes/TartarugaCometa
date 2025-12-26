@@ -38,13 +38,15 @@ public class AlteraProdutoServlet extends HttpServlet {
             }
             
             String nome = request.getParameter("nomeDoProduto");
-            nome = nome.replaceAll("[0-9]", "");
-
+            String pesoStr = request.getParameter("peso");
+            String volumeStr = request.getParameter("volume");
+            String valorStr = request.getParameter("valor");
+            
             Produto produto = produtoBo.buscarProdutoPorIdBO(id);
             produto.setNomeDoProduto(nome);
-            produto.setPeso(Double.parseDouble(request.getParameter("peso")));
-            produto.setVolume(Double.parseDouble(request.getParameter("volume")));
-            produto.setValor(Double.parseDouble(request.getParameter("valor")));
+            produto.setPeso(Double.valueOf(pesoStr));
+            produto.setVolume(Double.valueOf(volumeStr));
+            produto.setValor(Double.valueOf(valorStr));
 
             produtoBo.atualizarProdutoBO(produto);
 

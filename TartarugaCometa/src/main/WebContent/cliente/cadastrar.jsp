@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <option value="JURIDICA">Pessoa Jurídica</option>
         </select><br><br>
         
-        Nome/Razão Social:<input type="text" name="nome" maxlength="50" required><br><br>
+        Nome/Razão Social:<input type="text" name="nome" maxlength="50" oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\sçÇ]/g, '')" required><br><br>
         CPF/CNPJ:<input type="text" name="cpfcnpj" maxlength="18" placeholder="000.000.000-00 ou 00.000.000/0000-00" required><br><br>
 
         <h3>Endereço</h3>
@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
         Rua:<input type="text" name="rua" maxlength="50"><br><br>
         Número:<input type="text" name="numero" maxlength="15"><br><br>
         Bairro:<input type="text" name="bairro" maxlength="50"><br><br>
-        Cidade:<input type="text" name="cidade" maxlength="50"><br><br>
-        Estado:<input type="text" name="estado" maxlength="2" placeholder="PE"><br><br>
+        Cidade:<input type="text" name="cidade" maxlength="50" oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\sçÇ]/g, '')" sdfdssac><br><br>
+        Estado:<input type="text" name="estado" maxlength="2" placeholder="PE" oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\sçÇ]/g, '')" ><br><br>
         CEP:<input type="text" name="cep" maxlength="9" placeholder="00000-000" required><br><br>
 
         <input type="submit" value="Cadastrar">

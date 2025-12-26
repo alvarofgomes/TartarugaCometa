@@ -45,13 +45,14 @@ public class CadastrarEntregaServlet extends HttpServlet {
         try {
             String status = request.getParameter("status");
             String freteStr = request.getParameter("frete");
+            freteStr = freteStr.replace(".", "").replace(",", ".");
             String remetenteIdStr = request.getParameter("remetenteId");
             String destinatarioIdStr = request.getParameter("destinatarioId");
             String enderecoOrigemIdStr = request.getParameter("enderecoOrigemId");
             String enderecoDestinoIdStr = request.getParameter("enderecoDestinoId");
 
             if (status == null || status.isEmpty()
-                || freteStr == null || freteStr.isEmpty()
+            	|| freteStr == null || freteStr.isEmpty()
                 || remetenteIdStr == null || remetenteIdStr.isEmpty()
                 || destinatarioIdStr == null || destinatarioIdStr.isEmpty()
                 || enderecoOrigemIdStr == null || enderecoOrigemIdStr.isEmpty()

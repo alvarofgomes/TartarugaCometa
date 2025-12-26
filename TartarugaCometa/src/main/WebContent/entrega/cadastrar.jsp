@@ -7,6 +7,22 @@
 <meta charset="UTF-8">
 <title>Cadastrar Entrega</title>
 <link rel="stylesheet" href="/TartarugaCometa/css/style.css">
+<script>
+function formatarMoeda(campo) {
+    let valor = campo.value.replace(/\D/g, "");
+
+    if (valor === "") {
+        campo.value = "";
+        return;
+    }
+
+    valor = (parseInt(valor, 10) / 100).toFixed(2);
+    valor = valor.replace(".", ",");
+    valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    campo.value = valor;
+}
+</script>
 </head>
 <body>
 
@@ -15,7 +31,8 @@
 	<form action="/TartarugaCometa/entregaCadastrar" method="post">
 	
 		<input type="hidden" name="status" value="pendente">
-	    Frete:<input type="number" name="frete" required>
+	    Frete:
+		<input type="text" name="frete" id="frete" required placeholder="R$ 0,00" oninput="formatarMoeda(this)">
 	    <br><br>
 		Remetente:
 		<select name="remetenteId" required>
