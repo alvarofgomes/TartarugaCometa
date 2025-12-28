@@ -2,6 +2,7 @@ package com.tartarugacometa.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,12 @@ public class RemoveEnderecoServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/clienteListar");
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao remover endereço", e);
+
+            request.setAttribute("erro", e.getMessage());
+
+            RequestDispatcher rd =
+                request.getRequestDispatcher("/endereco/erro.jsp");
+            rd.forward(request, response);
         }
     }
 }

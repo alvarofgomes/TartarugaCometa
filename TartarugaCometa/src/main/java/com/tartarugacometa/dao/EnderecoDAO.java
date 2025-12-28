@@ -204,7 +204,7 @@ public class EnderecoDAO {
     public List<Endereco> listarEnderecosPorCliente(int clienteId) {
         List<Endereco> enderecos = new ArrayList<>();
 
-        String sql = "SELECT * FROM enderecos WHERE cliente_id = ?";
+        String sql = "SELECT * FROM enderecos WHERE clientes_id = ?";
 
         try (Connection conn = connection.recuperarConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {

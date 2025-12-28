@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <option value="JURIDICA">Pessoa Jurídica</option>
         </select><br/><br/>
         
-        CPF/CNPJ: <input type="text" name="cpfCnpj" value="${cliente.cpfCnpj}" placeholder="000.000.000-00 ou 00.000.000/0000-00" required/><br/><br/>
+        CPF/CNPJ: <input type="text" name="cpfCnpj" value="${cliente.cpfCnpj}" placeholder="000.000.000-00 ou 00.000.000/0000-00" maxlength="15" required/><br/><br/>
         
         <input type="submit" value="Salvar Alterações"/>
     </form>

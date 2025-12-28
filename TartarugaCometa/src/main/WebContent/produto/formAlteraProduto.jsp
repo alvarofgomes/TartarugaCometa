@@ -92,7 +92,7 @@ Nome do Produto:
 	Peso:
 <input type="text"
        placeholder="0,000"
-       oninput="formatarPeso(this, document.getElementById('peso'))"
+       oninput="formatarPeso(this, document.getElementById('peso'))" maxlength="7"
        required>
 
 <input type="hidden" name="peso" id="peso">
@@ -103,7 +103,7 @@ Nome do Produto:
 	Volume:
 	<input type="text"
 	       placeholder="0,00"
-	       oninput="formatarDecimal(this, document.getElementById('volume'))"
+	       oninput="formatarDecimal(this, document.getElementById('volume'))" maxlength="7"
 	       required>
 	
 	<input type="hidden" name="volume" id="volume">
@@ -113,7 +113,7 @@ Nome do Produto:
     Valor do Produto:
     <input type="text"
            placeholder="R$ 0,00"
-           oninput="formatarDecimal(this, document.getElementById('valor'))"
+           oninput="formatarDecimal(this, document.getElementById('valor'))" maxlength="10"
            required>
     <input type="hidden" name="valor" id="valor">
     <br><br>

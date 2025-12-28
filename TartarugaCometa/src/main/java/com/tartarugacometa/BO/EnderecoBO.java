@@ -20,12 +20,30 @@ public class EnderecoBO {
         enderecoDAO.atualizarEnderecoDAO(endereco);
     }
 
-
     public void deletarEnderecoBO(int id) {
         if (id <= 0) {
             throw new ValidacaoException("ID do endereço inválido para exclusão.");
         }
-        enderecoDAO.deletarEnderecoDAO(id);
+
+        try {
+            enderecoDAO.deletarEnderecoDAO(id);
+
+        } catch (Exception e) {
+
+            String mensagem = e.getMessage().toLowerCase();
+
+            if (mensagem.contains("foreign key")
+                || mensagem.contains("entregas")) {
+
+                throw new RuntimeException(
+                    "Não foi possível remover o endereço.\n\n" +
+                    "Este endereço está vinculado a uma ou mais entregas.\n" +
+                    "Enquanto essas entregas existirem, o endereço não pode ser removido."
+                );
+            }
+
+            throw new RuntimeException("Erro ao remover endereço: " + e.getMessage());
+        }
     }
 
     public List<Endereco> listarEnderecoBO() {

@@ -22,62 +22,121 @@ function formatarMoeda(campo) {
 
     campo.value = valor;
 }
+
+function atualizarSelecoes() {
+    const remetenteId = document.getElementById("remetente").value;
+    const destinatarioId = document.getElementById("destinatario").value;
+
+    const enderecoOrigem = document.getElementById("enderecoOrigem");
+    const enderecoDestino = document.getElementById("enderecoDestino");
+
+    for (let option of enderecoOrigem.options) {
+        if (!option.dataset.cliente) continue;
+        option.style.display =
+            option.dataset.cliente === remetenteId ? "block" : "none";
+    }
+
+    for (let option of enderecoDestino.options) {
+        if (!option.dataset.cliente) continue;
+        option.style.display =
+            option.dataset.cliente === destinatarioId ? "block" : "none";
+    }
+
+    const destinatarioSelect = document.getElementById("destinatario");
+    for (let option of destinatarioSelect.options) {
+        if (!option.value) continue;
+        option.style.display =
+            option.value === remetenteId ? "none" : "block";
+    }
+
+    const remetenteSelect = document.getElementById("remetente");
+    for (let option of remetenteSelect.options) {
+        if (!option.value) continue;
+        option.style.display =
+            option.value === destinatarioId ? "none" : "block";
+    }
+}
 </script>
 </head>
 <body>
 
-    <h2>Cadastro de Entrega</h2>
-
-	<form action="/TartarugaCometa/entregaCadastrar" method="post">
-	
-		<input type="hidden" name="status" value="pendente">
-	    Frete:
-		<input type="text" name="frete" id="frete" required placeholder="R$ 0,00" oninput="formatarMoeda(this)">
-	    <br><br>
-		Remetente:
-		<select name="remetenteId" required>
-		    <option value="">Selecione o remetente</option>
-		    <c:forEach items="${clientes}" var="c">
-		        <option value="${c.id}">
-		            ${c.nome}
-		        </option>
-		    </c:forEach>
-		</select>
-	    <br><br>
-		Destinatário:
-		<select name="destinatarioId" required>
-		    <option value="">Selecione o destinatário</option>
-		    <c:forEach items="${clientes}" var="c">
-		        <option value="${c.id}">
-		            ${c.nome}
-		        </option>
-		    </c:forEach>
-		</select>
-	    <br><br>	
-		Endereço de Origem:
-		<select name="enderecoOrigemId" required>
-		    <option value="">Selecione o endereço</option>
-		    <c:forEach items="${enderecos}" var="e">
-		        <option value="${e.id}">
-		            ${e.rua}, ${e.numero} - ${e.bairro} (${e.cidade})
-		        </option>
-		    </c:forEach>
-		</select>
-	    <br><br>
-		Endereço de Destino:
-		<select name="enderecoDestinoId" required>
-		    <option value="">Selecione o endereço</option>
-		    <c:forEach items="${enderecos}" var="e">
-		        <option value="${e.id}">
-		            ${e.rua}, ${e.numero} - ${e.bairro} (${e.cidade})
-		        </option>
-		    </c:forEach>
-		</select>
-	    <br><br>
-	
-	    <input type="submit" value="Cadastrar">
-	</form>
-
+    <div class="container">
+        <h1>Cadastro de Entrega</h1>
+        
+        <form action="/TartarugaCometa/entregaCadastrar" method="post">
+            
+            <input type="hidden" name="status" value="pendente">
+            
+            <div class="form-group">
+                <label for="frete">Valor do Frete:</label>
+                <input type="text" id="frete" name="frete" 
+                       placeholder="R$ 0,00" 
+                       oninput="formatarMoeda(this)" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="remetente">Remetente:</label>
+                        <select name="remetenteId" id="remetente" 
+                                onchange="atualizarSelecoes()" required>
+                            <option value="">Selecione o remetente</option>
+                            <c:forEach items="${clientes}" var="c">
+                                <option value="${c.id}">${c.nome}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="destinatario">Destinatário:</label>
+                        <select name="destinatarioId" id="destinatario" 
+                                onchange="atualizarSelecoes()" required>
+                            <option value="">Selecione o destinatário</option>
+                            <c:forEach items="${clientes}" var="c">
+                                <option value="${c.id}">${c.nome}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="enderecoOrigem">Endereço de Origem:</label>
+                        <select name="enderecoOrigemId" id="enderecoOrigem" required>
+                            <option value="">Selecione o endereço</option>
+                            <c:forEach items="${enderecos}" var="e">
+                                <option value="${e.id}" data-cliente="${e.cliente.id}">
+                                    ${e.rua}, ${e.numero} - ${e.bairro} (${e.cidade})
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="enderecoDestino">Endereço de Destino:</label>
+                        <select name="enderecoDestinoId" id="enderecoDestino" required>
+                            <option value="">Selecione o endereço</option>
+                            <c:forEach items="${enderecos}" var="e">
+                                <option value="${e.id}" data-cliente="${e.cliente.id}">
+                                    ${e.rua}, ${e.numero} - ${e.bairro} (${e.cidade})
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group text-center">
+                <input type="submit" value="Cadastrar Entrega" class="btn">
+                <a href="/TartarugaCometa/index.jsp" class="btn btn-secondary">Cancelar</a>
+            </div>
+            
+        </form>
+    </div>
 
 </body>
 </html>

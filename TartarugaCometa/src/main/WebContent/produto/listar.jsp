@@ -12,50 +12,52 @@
 </head>
 <body>
 
-    <h2>Produtos</h2>
+<h2>Produtos</h2>
 
-    <c:if test="${empty produtos}">
-        Nenhum produto cadastrado.
-    </c:if>
+<ul>
+    <c:forEach items="${produtos}" var="produto">
+        <li>
+            <strong>Nome do Produto:</strong> ${produto.nomeDoProduto}<br><br>
+            
+            <strong>Peso:</strong>
+            <fmt:formatNumber value="${produto.peso}"
+                              minFractionDigits="3"
+                              maxFractionDigits="3" /><br><br>
+            
+            <strong>Volume:</strong>
+            <fmt:formatNumber value="${produto.volume}"
+                              minFractionDigits="2"
+                              maxFractionDigits="2" /><br><br>
+            
+            <strong>Valor do Produto:</strong>
+            <fmt:formatNumber value="${produto.valor}"
+                              type="currency"
+                              currencySymbol="R$" /><br><br>
+            
+            <a href="mostraProduto?id=${produto.id}">Editar</a> |
+            <a href="removeProduto?id=${produto.id}"
+               onclick="return confirm('Tem certeza que deseja remover este produto?');">
+               Remover
+            </a>
+        </li>
+    </c:forEach>
+</ul>
 
-    <ul>
-        <c:forEach items="${produtos}" var="produto">
-<li>
-    Nome do Produto: ${produto.nomeDoProduto}<br>
+<c:if test="${empty produtos}">
+    <p>Nenhum produto cadastrado.</p>
+</c:if>
 
-    Peso:
-    <fmt:formatNumber value="${produto.peso}"
-                      minFractionDigits="3"
-                      maxFractionDigits="3" /><br>
+<br>
 
-    Volume:
-    <fmt:formatNumber value="${produto.volume}"
-                      minFractionDigits="2"
-                      maxFractionDigits="2" /><br>
+<a href="/TartarugaCometa/produtoCadastrar">
+    <input type="submit" value="Cadastrar" />
+</a>
 
-    Valor do Produto:
-    <fmt:formatNumber value="${produto.valor}"
-                      type="currency"
-                      currencySymbol="R$" /><br>
+<br><br>
 
-    <a href="mostraProduto?id=${produto.id}">Editar</a>
-    |
-    <a href="removeProduto?id=${produto.id}"
-       onclick="return confirm('Tem certeza que deseja remover este produto?');">
-       Remover
-    </a>
-</li>
-            <hr>
-        </c:forEach>
-    </ul>
-
-    <a href="/TartarugaCometa/produtoCadastrar">
-        <input type="submit" value="Cadastrar" />
-    </a>
-    <br><br>
-    <a href="/TartarugaCometa/index.jsp">
-        <input type="submit" value="Voltar" />
-    </a>
+<a href="/TartarugaCometa/index.jsp">
+    <input type="submit" value="Voltar" />
+</a>
 
 </body>
 </html>

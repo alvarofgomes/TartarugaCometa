@@ -37,7 +37,6 @@ public class CadastrarClienteServlet extends HttpServlet{
 	    try {
 
 	        String nome = request.getParameter("nome");
-	        nome = nome.replaceAll("[0-9]", "");
 
 	        String cpfcnpj = request.getParameter("cpfcnpj");
 	        cpfcnpj = cpfcnpj.replaceAll("\\D", "");

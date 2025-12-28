@@ -25,27 +25,23 @@ public class ClienteBO {
 
     public void deletarClienteBO(int id) {
         try {
-
             clienteDAO.deletarClienteSimplesDAO(id);
-            
+
         } catch (Exception e) {
 
-            if (e.getMessage().contains("violates foreign key constraint") || 
-                e.getMessage().contains("entregas associadas")) {
-                
-                try {
-                    clienteDAO.deletarClienteDAO(id); 
-                } catch (Exception e2) {
-                    throw new RuntimeException(
-                        "Não foi possível remover o cliente. " +
-                        "Existem entregas associadas que impedem a remoção. " +
-                        "Remova as entregas primeiro ou contate o administrador. " +
-                        "Erro: " + e2.getMessage());
-                }
-            } else {
+            String mensagem = e.getMessage().toLowerCase();
 
-                throw new RuntimeException("Erro ao remover cliente: " + e.getMessage());
+            if (mensagem.contains("foreign key")
+                || mensagem.contains("entregas")) {
+
+                throw new RuntimeException(
+                    "Não foi possível remover o cliente.\n\n" +
+                    "Existem entregas vinculadas a endereços deste cliente.\n" +
+                    "Enquanto essas entregas existirem, o cliente não pode ser removido."
+                );
             }
+
+            throw new RuntimeException("Erro ao remover cliente: " + e.getMessage());
         }
     }
     

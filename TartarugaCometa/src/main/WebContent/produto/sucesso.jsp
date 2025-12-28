@@ -10,7 +10,6 @@
 <body>
 
 	Produto cadastrado com sucesso!  
-	Nome do Produto: ${produto.nomeDoProduto}
 
 	<br><br>
 	<a href="/TartarugaCometa/produtoListar"><input type="submit" value="Voltar a Lista" /></a>

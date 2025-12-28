@@ -1,6 +1,8 @@
 package com.tartarugacometa.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,13 +23,16 @@ public class RemoveClienteServlet extends HttpServlet {
 
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-
             clienteBo.deletarClienteBO(id);
 
-            response.sendRedirect(request.getContextPath() + "/clienteListar");
+            response.sendRedirect("clienteListar");
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao remover cliente", e);
+
+            request.setAttribute("erro", e.getMessage());
+            RequestDispatcher rd =
+                request.getRequestDispatcher("/cliente/erro.jsp");
+            rd.forward(request, response);
         }
     }
 }

@@ -6,12 +6,10 @@
 <link rel="stylesheet" href="/TartarugaCometa/css/style.css">
 </head>
 <body>
-
-	<h3>Erro ao cadastrar cliente</h3>
 	<p>${erro}</p>
 
 	<br>
-	<a href="/TartarugaCometa/clienteCadastrar">Voltar ao Cadastro Cliente</a>
+	<a href="/TartarugaCometa/clienteListar">Voltar</a>
 
 </body>
 </html>
