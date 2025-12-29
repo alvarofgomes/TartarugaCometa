@@ -75,8 +75,16 @@
                 
                 <tr>
                     <td style="padding: 8px; border: 1px solid #ddd;">${item.produto.nomeDoProduto}</td>
-                    <td style="padding: 8px; border: 1px solid #ddd;">${item.produto.peso}</td>
-                    <td style="padding: 8px; border: 1px solid #ddd;">${item.produto.volume}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">
+                        <fmt:formatNumber value="${item.produto.peso}"
+                                          minFractionDigits="3"
+                                          maxFractionDigits="3" />
+                    </td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">
+                        <fmt:formatNumber value="${item.produto.volume}"
+                                          minFractionDigits="2"
+                                          maxFractionDigits="2" />
+                    </td>
                     <td style="padding: 8px; border: 1px solid #ddd;">
                         R$ <fmt:formatNumber value="${item.produto.valor}" minFractionDigits="2" />
                     </td>
